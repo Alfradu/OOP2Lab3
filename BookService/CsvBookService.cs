@@ -13,6 +13,10 @@ namespace BookService
         public CsvBookService()
         {
             CsvParser parser = new CsvParser();
+            ParseData(parser);
+        }
+        public void ParseData(CsvParser parser)
+        {
             parser.ParseCsv();
             AuthorList.AddRange(parser.GetAuthors());
             BookList.AddRange(parser.GetBooks());

@@ -161,6 +161,7 @@ namespace BookService
 
         private void filterBtn_Click(object sender, EventArgs e)
         {
+            //TODO: add all filtering functionality aaaaa
             //populateListBox(bookService.FilterBooksBy());
         }
 
@@ -176,6 +177,17 @@ namespace BookService
                 List<Author> newList = bookService.AllAuthors().Where(a => listBox.Items.Contains(a.Name)).ToList();
                 WriteToFile<Author>.WriteToTextFile(newList);
             }
+        }
+
+        private void descendingBtn_Click(object sender, EventArgs e)
+        {
+            //TODO: order list contents by title or name descending
+        }
+
+        private void ascendingBtn_Click(object sender, EventArgs e)
+        {
+            //TODO: order list contents by title or name ascending
+
         }
     }
 }

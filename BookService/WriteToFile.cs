@@ -19,6 +19,7 @@ namespace BookService
                 foreach(Book book in bookList)
                 {
                     s.Add(book.ISBN+";"+string.Join(", ",book.Authors.Select(a => a.Name)) + ";"+book.YearOfPublication + ";"+book.Title + ";"+book.Rating + ";"+book.NumberOfUserVotes);
+                    // TODO: add to TOSTRING() method.
                 }
             }
             else if (list.GetType() == typeof(List<Author>))
@@ -40,7 +41,9 @@ namespace BookService
             }
             bool append = false;
             if (File.Exists(path)) { append = true; } 
-            using (StreamWriter output = new StreamWriter(Path.Combine(path), append))
+            //TODO: write to different file formats
+            // get path from user (or filename)
+            using (StreamWriter output = new StreamWriter(Path.Combine(path), append)) 
             {
                 foreach (string line in s)
                 {
