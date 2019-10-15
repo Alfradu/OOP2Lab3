@@ -166,15 +166,23 @@ namespace BookService
         private void saveXmlBtn_Click(object sender, EventArgs e) => saveFile(".xml");
         private void saveFile(string extension)
         {
-            if (lookingAtBooks)
+            try
             {
-                List<Book> newList = bookService.AllBooks().Where(b => listBox.Items.Contains(b.Title)).ToList();
-                WriteToFile<Book>.WriteToTextFile(newList, extension, fileSaveBox.Text);
+                if (lookingAtBooks)
+                {
+                    List<Book> newList = bookService.AllBooks().Where(b => listBox.Items.Contains(b.Title)).ToList();
+                    WriteToFile<Book>.WriteToTextFile(newList, extension, fileSaveBox.Text);
+                }
+                else
+                {
+                    List<Author> newList = bookService.AllAuthors().Where(a => listBox.Items.Contains(a.Name)).ToList();
+                    WriteToFile<Author>.WriteToTextFile(newList, extension, fileSaveBox.Text);
+                }
+                saveDataErr.Visible = false;
             }
-            else
+            catch (Exception ex)
             {
-                List<Author> newList = bookService.AllAuthors().Where(a => listBox.Items.Contains(a.Name)).ToList();
-                WriteToFile<Author>.WriteToTextFile(newList, extension, fileSaveBox.Text);
+                saveDataErr.Visible = true;
             }
         }
         private void descendingBtn_Click(object sender, EventArgs e)

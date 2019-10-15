@@ -63,10 +63,10 @@ namespace BookService
         }
         public IEnumerable<Book> ResetBooks() => ParseBooks();
         public IEnumerable<Author> ResetAuthors() => ParseAuthors();
-        public IEnumerable<Book> OrderBooks() => BookList.OrderBy(b => b.Title);
-        public IEnumerable<Author> OrderAuthors() => AuthorList.OrderBy(a => a.Name);
-        public IEnumerable<Book> OrderDescBooks() => BookList.OrderByDescending(b => b.Title);
-        public IEnumerable<Author> OrderDescAuthors() => AuthorList.OrderByDescending(a => a.Name);
+        public IEnumerable<Book> OrderBooks() => UpdateList(BookList.OrderBy(b => b.Title).ToList());
+        public IEnumerable<Author> OrderAuthors() => UpdateList(AuthorList.OrderBy(a => a.Name).ToList());
+        public IEnumerable<Book> OrderDescBooks() => UpdateList(BookList.OrderByDescending(b => b.Title).ToList());
+        public IEnumerable<Author> OrderDescAuthors() => UpdateList(AuthorList.OrderByDescending(a => a.Name).ToList());
         public IEnumerable<Book> AllBooks() => BookList;
         public IEnumerable<Author> AllAuthors() => AuthorList;
         public IEnumerable<Book> BooksByAuthor(string name) => UpdateList(BookList.Where(book => book.Authors.Any(a => a.Name == name)).ToList());
@@ -74,6 +74,6 @@ namespace BookService
         public IEnumerable<Book> BooksBetweenYears(int yearA, int yearB) => UpdateList(BookList.OrderBy(b => b.YearOfPublication).Where(book => book.YearOfPublication >= yearA && book.YearOfPublication <= yearB).ToList());
         public IEnumerable<Book> LeastFavouriteBooks() => UpdateList( BookList.OrderBy(book => book.Rating).ToList());
         public IEnumerable<Book> MostFavouriteBooks(int number) => UpdateList( BookList.OrderByDescending(book => book.Rating).Take(number).ToList());
-        public IEnumerable<Book> FilterBooksBy(Func<Book, bool> expression) => BookList.Where(expression);
+        public IEnumerable<Book> FilterBooksBy(Func<Book, bool> expression) => UpdateList(BookList.Where(expression).ToList());
     }
 }
