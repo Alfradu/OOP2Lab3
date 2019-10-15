@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BookService
@@ -14,36 +9,57 @@ namespace BookService
     public partial class BookForm : Form
     {
         bool lookingAtBooks = true;
+        int page = 0;
+        const int showPerPage = 50;
         IBookService bookService = SimpleDI.GetService();
         public BookForm()
         {
             InitializeComponent();
-            populateListBox(bookService.AllBooks());
+            PopulateListBox(bookService.AllBooks());
         }
 
-        private void hideErrors()
+        private void HideErrors()
         {
             newBookErr.Hide();
             newAuthErr.Hide();
             linkErr.Hide();
         }
 
-        private void populateListBox(IEnumerable<Book> books)
+        private void PopulateListBox(IEnumerable<Book> books)
         {
             listBox.Items.Clear();
-            books.ToList().ForEach(b => listBox.Items.Add(b.Title));
-            displayLabel.Text = "(Displaying " + listBox.Items.Count.ToString() + " entries.)";
+            books.Skip(page * showPerPage).Take(showPerPage).ToList().ForEach(b => listBox.Items.Add(b.Title));
+            displayLabel.Text = "(Displaying items " + ((page) * showPerPage + 1) + " to " + books.Take(showPerPage * (page + 1)).ToList().Count + ".)";
             lookingAtBooks = true;
+            CheckBtnEnabledStatus();
         }
-        private void populateListBox(IEnumerable<Author> authors)
+        private void PopulateListBox(IEnumerable<Author> authors)
         {
             listBox.Items.Clear();
-            authors.ToList().ForEach(a => listBox.Items.Add(a.Name));
-            displayLabel.Text = "(Displaying " + listBox.Items.Count.ToString() + " entries.)";
+            authors.Skip(page * showPerPage).Take(showPerPage).ToList().ForEach(a => listBox.Items.Add(a.Name));
+            displayLabel.Text = "(Displaying items " + ((page) * showPerPage + 1) + " to " + authors.Take(showPerPage * (page + 1)).ToList().Count + ".)";
             lookingAtBooks = false;
+            CheckBtnEnabledStatus();
         }
-        
-        private void bookAddBtn_Click(object sender, EventArgs e)
+        private void CheckBtnEnabledStatus()
+        {
+            leftBtn.Enabled = page == 0 ? false : true;
+            if (lookingAtBooks)
+            {
+                rightBtn.Enabled = bookService.AllBooks().ToList().Count - (showPerPage * (1+page)) < 1 ? false : true;
+            }
+            else
+            {
+                rightBtn.Enabled = bookService.AllAuthors().ToList().Count - (showPerPage * (1+page)) < 1 ? false : true;
+            }
+        }
+        private void ResetPageCount()
+        {
+            page = 0;
+            CheckBtnEnabledStatus();
+        }
+
+        private void BookAddBtn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -53,19 +69,19 @@ namespace BookService
                 bookService.AddBook(_isbn, _title, _yop, 0, 0);
                 if (lookingAtBooks)
                 {
-                    populateListBox(bookService.AllBooks());
+                    PopulateListBox(bookService.AllBooks());
                 }
                 isbnText.Clear();
                 titleText.Clear();
                 yearPubText.Clear();
-                hideErrors();
+                HideErrors();
             } catch (Exception)
             {
                 newBookErr.Show();
             }
         }
 
-        private void authorAddBtn_Click(object sender, EventArgs e)
+        private void AuthorAddBtn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -73,10 +89,10 @@ namespace BookService
                 bookService.AddAuthor(_name);
                 if (!lookingAtBooks)
                 {
-                    populateListBox(bookService.AllAuthors());
+                    PopulateListBox(bookService.AllAuthors());
                 }
                 nameText.Clear();
-                hideErrors();
+                HideErrors();
             }
             catch (Exception)
             {
@@ -84,7 +100,7 @@ namespace BookService
             }
         }
 
-        private void mergeBtn_Click(object sender, EventArgs e)
+        private void MergeBtn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -93,14 +109,14 @@ namespace BookService
                 bookService.ConnectBookAndAuthor(_book, _author);
                 bookNameText.Clear();
                 authorNameText.Clear();
-                hideErrors();
+                HideErrors();
             } catch (Exception)
             {
                 linkErr.Show();
             }
         }
 
-        private void listBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBox.SelectedIndex != ListBox.NoMatches)
             {
@@ -126,48 +142,55 @@ namespace BookService
             }
         }
 
-        private void displayBooksBtn_Click(object sender, EventArgs e)
+        private void DisplayBooksBtn_Click(object sender, EventArgs e)
         {
             bookAuthorSearchText.Clear();
             nameFilterBox.Clear();
-            populateListBox(bookService.AllBooks());
+            ResetPageCount();
+            PopulateListBox(bookService.AllBooks());
         }
 
-        private void displayAuthorsBtn_Click(object sender, EventArgs e)
+        private void DisplayAuthorsBtn_Click(object sender, EventArgs e)
         {
             titleFilterBox.Clear();
-            populateListBox(bookService.AllAuthors());
+            ResetPageCount();
+            PopulateListBox(bookService.AllAuthors());
         }
 
-        private void bookAuthorSearchBtn_Click(object sender, EventArgs e)
+        private void BookAuthorSearchBtn_Click(object sender, EventArgs e)
         {
-            populateListBox(bookService.BooksByAuthor(bookAuthorSearchText.Text));
+            ResetPageCount();
+            PopulateListBox(bookService.BooksByAuthor(bookAuthorSearchText.Text));
         }
 
-        private void bookYearSearchBtn_Click(object sender, EventArgs e)
+        private void BookYearSearchBtn_Click(object sender, EventArgs e)
         {
-            populateListBox(bookService.BooksByYear(decimal.ToInt32(bookYearSearchInt.Value)));
+            ResetPageCount();
+            PopulateListBox(bookService.BooksByYear(decimal.ToInt32(bookYearSearchInt.Value)));
         }
 
-        private void leastFavBtn_Click(object sender, EventArgs e)
+        private void LeastFavBtn_Click(object sender, EventArgs e)
         {
-            populateListBox(bookService.LeastFavouriteBooks());
+            ResetPageCount();
+            PopulateListBox(bookService.LeastFavouriteBooks());
         }
 
-        private void topRatedBtn_Click(object sender, EventArgs e)
+        private void TopRatedBtn_Click(object sender, EventArgs e)
         {
-            populateListBox(bookService.MostFavouriteBooks(Convert.ToInt32(topRatedNumber.Value)));
+            ResetPageCount();
+            PopulateListBox(bookService.MostFavouriteBooks(Convert.ToInt32(topRatedNumber.Value)));
         }
 
-        private void betweenYearsBtn_Click(object sender, EventArgs e)
+        private void BetweenYearsBtn_Click(object sender, EventArgs e)
         {
-            populateListBox(bookService.BooksBetweenYears(Convert.ToInt32(minYears.Value),Convert.ToInt32(maxYears.Value)));
+            ResetPageCount();
+            PopulateListBox(bookService.BooksBetweenYears(Convert.ToInt32(minYears.Value),Convert.ToInt32(maxYears.Value)));
         }
 
-        private void saveBtn_Click(object sender, EventArgs e) => saveFile(".txt");
-        private void saveCsvBtn_Click(object sender, EventArgs e) => saveFile(".csv");
-        private void saveXmlBtn_Click(object sender, EventArgs e) => saveFile(".xml");
-        private void saveFile(string extension)
+        private void SaveBtn_Click(object sender, EventArgs e) => SaveFile(".txt");
+        private void SaveCsvBtn_Click(object sender, EventArgs e) => SaveFile(".csv");
+        private void SaveXmlBtn_Click(object sender, EventArgs e) => SaveFile(".xml");
+        private void SaveFile(string extension)
         {
             try
             {
@@ -188,48 +211,52 @@ namespace BookService
                 saveDataErr.Visible = true;
             }
         }
-        private void descendingBtn_Click(object sender, EventArgs e)
+        private void DescendingBtn_Click(object sender, EventArgs e)
         {
+            ResetPageCount();
             if (lookingAtBooks)
             {
-                populateListBox(bookService.OrderDescBooks());
+                PopulateListBox(bookService.OrderDescBooks());
             }
             else
             {
-                populateListBox(bookService.OrderDescAuthors());
+                PopulateListBox(bookService.OrderDescAuthors());
             }
         }
 
-        private void ascendingBtn_Click(object sender, EventArgs e)
+        private void AscendingBtn_Click(object sender, EventArgs e)
         {
+            ResetPageCount();
             if (lookingAtBooks)
             {
-                populateListBox(bookService.OrderBooks());
+                PopulateListBox(bookService.OrderBooks());
             }
             else
             {
-                populateListBox(bookService.OrderAuthors());
+                PopulateListBox(bookService.OrderAuthors());
             }
         }
 
-        private void resetSearchBtn_Click(object sender, EventArgs e)
+        private void ResetSearchBtn_Click(object sender, EventArgs e)
         {
+            ResetPageCount();
             if (lookingAtBooks)
             {
-                populateListBox(bookService.ResetBooks());
+                PopulateListBox(bookService.ResetBooks());
             }
             else
             {
-                populateListBox(bookService.ResetAuthors());
+                PopulateListBox(bookService.ResetAuthors());
             }
         }
 
-        private void loadCsvBtn_Click(object sender, EventArgs e)
+        private void LoadCsvBtn_Click(object sender, EventArgs e)
         {
             try
             {
+                ResetPageCount();
                 bookService.LoadData(fileLoadBox.Text);
-                populateListBox(bookService.AllBooks());
+                PopulateListBox(bookService.AllBooks());
                 loadDataErr.Visible = false;
             }
             catch (Exception ex)
@@ -238,95 +265,113 @@ namespace BookService
             }
         }
 
-        private void filterBtn_Click(object sender, EventArgs e)
+        private void FilterBtn_Click(object sender, EventArgs e)
         {
             if (radioPubYear.Checked)
             {
-                populateListBox(bookService.FilterBooksBy(a => a.YearOfPublication <= pubYearFilterBox.Value));
+                ResetPageCount();
+                PopulateListBox(bookService.FilterBooksBy(a => a.YearOfPublication <= pubYearFilterBox.Value));
             }
             else if (radioRating.Checked)
             {
-                populateListBox(bookService.FilterBooksBy(a => (decimal)a.Rating <= RatingFilterBox.Value));
+                ResetPageCount();
+                PopulateListBox(bookService.FilterBooksBy(a => (decimal)a.Rating <= RatingFilterBox.Value));
             }
             else if (radioVotes.Checked)
             {
-                populateListBox(bookService.FilterBooksBy(a => a.NumberOfUserVotes <= VotesFilterbox.Value));
+                ResetPageCount();
+                PopulateListBox(bookService.FilterBooksBy(a => a.NumberOfUserVotes <= VotesFilterbox.Value));
             }
         }
 
-        private void filter2Btn_Click(object sender, EventArgs e)
+        private void Filter2Btn_Click(object sender, EventArgs e)
         {
             if (radioPubYear.Checked)
             {
-                populateListBox(bookService.FilterBooksBy(a => a.YearOfPublication >= pubYearFilterBox.Value));
+                ResetPageCount();
+                PopulateListBox(bookService.FilterBooksBy(a => a.YearOfPublication >= pubYearFilterBox.Value));
             }
             else if (radioRating.Checked)
             {
-                populateListBox(bookService.FilterBooksBy(a => (decimal)a.Rating >= RatingFilterBox.Value));
+                ResetPageCount();
+                PopulateListBox(bookService.FilterBooksBy(a => (decimal)a.Rating >= RatingFilterBox.Value));
             }
             else if (radioVotes.Checked)
             {
-                populateListBox(bookService.FilterBooksBy(a => a.NumberOfUserVotes >= VotesFilterbox.Value));
+                ResetPageCount();
+                PopulateListBox(bookService.FilterBooksBy(a => a.NumberOfUserVotes >= VotesFilterbox.Value));
             }
         }
 
-        private void filter3Btn_Click(object sender, EventArgs e)
+        private void Filter3Btn_Click(object sender, EventArgs e)
         {
             if (radioPubYear.Checked)
             {
-                populateListBox(bookService.FilterBooksBy(a => a.YearOfPublication == pubYearFilterBox.Value));
+                ResetPageCount();
+                PopulateListBox(bookService.FilterBooksBy(a => a.YearOfPublication == pubYearFilterBox.Value));
             }
             else if (radioRating.Checked)
             {
-                populateListBox(bookService.FilterBooksBy(a => (decimal)a.Rating == RatingFilterBox.Value));
+                ResetPageCount();
+                PopulateListBox(bookService.FilterBooksBy(a => (decimal)a.Rating == RatingFilterBox.Value));
             }
             else if (radioVotes.Checked)
             {
-                populateListBox(bookService.FilterBooksBy(a => a.NumberOfUserVotes == VotesFilterbox.Value));
+                ResetPageCount();
+                PopulateListBox(bookService.FilterBooksBy(a => a.NumberOfUserVotes == VotesFilterbox.Value));
             }
             else if (radioISBN.Checked)
             {
-                populateListBox(bookService.FilterBooksBy(a => a.ISBN == isbnFilterBox.Text));
+                ResetPageCount();
+                PopulateListBox(bookService.FilterBooksBy(a => a.ISBN == isbnFilterBox.Text));
             }
             else if (radioName.Checked)
             {
-                populateListBox(bookService.FilterBooksBy(a => a.Authors.Any(b => b.Name == nameFilterBox.Text)));
+                ResetPageCount();
+                PopulateListBox(bookService.FilterBooksBy(a => a.Authors.Any(b => b.Name == nameFilterBox.Text)));
             }
             else if (radioTitle.Checked)
             {
-                populateListBox(bookService.FilterBooksBy(a => a.Title == titleFilterBox.Text));
+                ResetPageCount();
+                PopulateListBox(bookService.FilterBooksBy(a => a.Title == titleFilterBox.Text));
             }
         }
 
-        private void filter4Btn_Click(object sender, EventArgs e)
+        private void Filter4Btn_Click(object sender, EventArgs e)
         {
             if (radioPubYear.Checked)
             {
-                populateListBox(bookService.FilterBooksBy(a => a.YearOfPublication != pubYearFilterBox.Value));
+                ResetPageCount();
+                PopulateListBox(bookService.FilterBooksBy(a => a.YearOfPublication != pubYearFilterBox.Value));
             }
             else if (radioRating.Checked)
             {
-                populateListBox(bookService.FilterBooksBy(a => (decimal)a.Rating != RatingFilterBox.Value));
+                ResetPageCount();
+                PopulateListBox(bookService.FilterBooksBy(a => (decimal)a.Rating != RatingFilterBox.Value));
             }
             else if (radioVotes.Checked)
             {
-                populateListBox(bookService.FilterBooksBy(a => a.NumberOfUserVotes != VotesFilterbox.Value));
+                ResetPageCount();
+                PopulateListBox(bookService.FilterBooksBy(a => a.NumberOfUserVotes != VotesFilterbox.Value));
             }
             else if (radioISBN.Checked)
             {
-                populateListBox(bookService.FilterBooksBy(a => a.ISBN != isbnFilterBox.Text));
+                ResetPageCount();
+                PopulateListBox(bookService.FilterBooksBy(a => a.ISBN != isbnFilterBox.Text));
             }
             else if (radioName.Checked)
             {
-                populateListBox(bookService.FilterBooksBy(a => a.Authors.Any(b => b.Name != nameFilterBox.Text)));
+                ResetPageCount();
+                PopulateListBox(bookService.FilterBooksBy(a => a.Authors.Any(b => b.Name != nameFilterBox.Text)));
             }
             else if (radioTitle.Checked)
             {
-                populateListBox(bookService.FilterBooksBy(a => a.Title != titleFilterBox.Text));
+                ResetPageCount();
+                PopulateListBox(bookService.FilterBooksBy(a => a.Title != titleFilterBox.Text));
             }
         }
-
-        private void radio_CheckedChanged(object sender, EventArgs e)
+        
+        private void Radio_CheckedChanged(object sender, EventArgs e)
         {
             if (radioISBN.Checked || radioName.Checked || radioTitle.Checked)
             {
@@ -337,6 +382,31 @@ namespace BookService
             {
                 filterBtn.Enabled = true;
                 filter2Btn.Enabled = true;
+            }
+        }
+        private void LeftBtn_Click(object sender, EventArgs e)
+        {
+            page--;
+            if (lookingAtBooks)
+            {
+                PopulateListBox(bookService.AllBooks());
+            }
+            else
+            {
+                PopulateListBox(bookService.AllAuthors());
+            }
+        }
+
+        private void RightBtn_Click(object sender, EventArgs e)
+        {
+            page++;
+            if (lookingAtBooks)
+            {
+                PopulateListBox(bookService.AllBooks());
+            }
+            else
+            {
+                PopulateListBox(bookService.AllAuthors());
             }
         }
     }

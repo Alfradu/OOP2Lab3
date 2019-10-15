@@ -61,7 +61,7 @@ namespace BookService {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CsvBookService.
+        ///   Looks up a localized string similar to DataBookService.
         /// </summary>
         internal static string IBookService {
             get {

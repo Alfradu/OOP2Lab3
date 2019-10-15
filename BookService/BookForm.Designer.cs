@@ -113,6 +113,8 @@
             this.fileLoadBox = new System.Windows.Forms.TextBox();
             this.fileSaveBox = new System.Windows.Forms.TextBox();
             this.loadDataBtn = new System.Windows.Forms.Button();
+            this.leftBtn = new System.Windows.Forms.Button();
+            this.rightBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -142,9 +144,9 @@
             this.listBox.FormattingEnabled = true;
             this.listBox.Location = new System.Drawing.Point(6, 17);
             this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(189, 303);
+            this.listBox.Size = new System.Drawing.Size(189, 277);
             this.listBox.TabIndex = 0;
-            this.listBox.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
+            this.listBox.SelectedIndexChanged += new System.EventHandler(this.ListBox_SelectedIndexChanged);
             // 
             // displayBooksBtn
             // 
@@ -154,7 +156,7 @@
             this.displayBooksBtn.TabIndex = 1;
             this.displayBooksBtn.Text = "Show Books";
             this.displayBooksBtn.UseVisualStyleBackColor = true;
-            this.displayBooksBtn.Click += new System.EventHandler(this.displayBooksBtn_Click);
+            this.displayBooksBtn.Click += new System.EventHandler(this.DisplayBooksBtn_Click);
             // 
             // displayAuthorsBtn
             // 
@@ -164,7 +166,7 @@
             this.displayAuthorsBtn.TabIndex = 2;
             this.displayAuthorsBtn.Text = "Show Authors";
             this.displayAuthorsBtn.UseVisualStyleBackColor = true;
-            this.displayAuthorsBtn.Click += new System.EventHandler(this.displayAuthorsBtn_Click);
+            this.displayAuthorsBtn.Click += new System.EventHandler(this.DisplayAuthorsBtn_Click);
             // 
             // bookAuthorSearchBtn
             // 
@@ -174,7 +176,7 @@
             this.bookAuthorSearchBtn.TabIndex = 3;
             this.bookAuthorSearchBtn.Text = "Search";
             this.bookAuthorSearchBtn.UseVisualStyleBackColor = true;
-            this.bookAuthorSearchBtn.Click += new System.EventHandler(this.bookAuthorSearchBtn_Click);
+            this.bookAuthorSearchBtn.Click += new System.EventHandler(this.BookAuthorSearchBtn_Click);
             // 
             // bookYearSearchBtn
             // 
@@ -184,7 +186,7 @@
             this.bookYearSearchBtn.TabIndex = 4;
             this.bookYearSearchBtn.Text = "Search";
             this.bookYearSearchBtn.UseVisualStyleBackColor = true;
-            this.bookYearSearchBtn.Click += new System.EventHandler(this.bookYearSearchBtn_Click);
+            this.bookYearSearchBtn.Click += new System.EventHandler(this.BookYearSearchBtn_Click);
             // 
             // bookAuthorSearchText
             // 
@@ -208,7 +210,7 @@
             this.bookAddBtn.TabIndex = 8;
             this.bookAddBtn.Text = "Add";
             this.bookAddBtn.UseVisualStyleBackColor = true;
-            this.bookAddBtn.Click += new System.EventHandler(this.bookAddBtn_Click);
+            this.bookAddBtn.Click += new System.EventHandler(this.BookAddBtn_Click);
             // 
             // authorAddBtn
             // 
@@ -218,7 +220,7 @@
             this.authorAddBtn.TabIndex = 14;
             this.authorAddBtn.Text = "Add";
             this.authorAddBtn.UseVisualStyleBackColor = true;
-            this.authorAddBtn.Click += new System.EventHandler(this.authorAddBtn_Click);
+            this.authorAddBtn.Click += new System.EventHandler(this.AuthorAddBtn_Click);
             // 
             // groupBox1
             // 
@@ -395,7 +397,7 @@
             this.mergeBtn.TabIndex = 14;
             this.mergeBtn.Text = "Link";
             this.mergeBtn.UseVisualStyleBackColor = true;
-            this.mergeBtn.Click += new System.EventHandler(this.mergeBtn_Click);
+            this.mergeBtn.Click += new System.EventHandler(this.MergeBtn_Click);
             // 
             // groupBox4
             // 
@@ -433,7 +435,7 @@
             this.resetSearchBtn.TabIndex = 35;
             this.resetSearchBtn.Text = "Reset search";
             this.resetSearchBtn.UseVisualStyleBackColor = true;
-            this.resetSearchBtn.Click += new System.EventHandler(this.resetSearchBtn_Click);
+            this.resetSearchBtn.Click += new System.EventHandler(this.ResetSearchBtn_Click);
             // 
             // label9
             // 
@@ -469,7 +471,7 @@
             this.topRatedBtn.TabIndex = 29;
             this.topRatedBtn.Text = "Display";
             this.topRatedBtn.UseVisualStyleBackColor = true;
-            this.topRatedBtn.Click += new System.EventHandler(this.topRatedBtn_Click);
+            this.topRatedBtn.Click += new System.EventHandler(this.TopRatedBtn_Click);
             // 
             // leastFavBtn
             // 
@@ -479,7 +481,7 @@
             this.leastFavBtn.TabIndex = 28;
             this.leastFavBtn.Text = "Show least Favourite books";
             this.leastFavBtn.UseVisualStyleBackColor = true;
-            this.leastFavBtn.Click += new System.EventHandler(this.leastFavBtn_Click);
+            this.leastFavBtn.Click += new System.EventHandler(this.LeastFavBtn_Click);
             // 
             // betweenYearsBtn
             // 
@@ -489,7 +491,7 @@
             this.betweenYearsBtn.TabIndex = 27;
             this.betweenYearsBtn.Text = "Search";
             this.betweenYearsBtn.UseVisualStyleBackColor = true;
-            this.betweenYearsBtn.Click += new System.EventHandler(this.betweenYearsBtn_Click);
+            this.betweenYearsBtn.Click += new System.EventHandler(this.BetweenYearsBtn_Click);
             // 
             // label7
             // 
@@ -610,7 +612,7 @@
             this.ascendingBtn.TabIndex = 36;
             this.ascendingBtn.Text = "Ascending";
             this.ascendingBtn.UseVisualStyleBackColor = true;
-            this.ascendingBtn.Click += new System.EventHandler(this.ascendingBtn_Click);
+            this.ascendingBtn.Click += new System.EventHandler(this.AscendingBtn_Click);
             // 
             // descendingBtn
             // 
@@ -620,7 +622,7 @@
             this.descendingBtn.TabIndex = 35;
             this.descendingBtn.Text = "Descending";
             this.descendingBtn.UseVisualStyleBackColor = true;
-            this.descendingBtn.Click += new System.EventHandler(this.descendingBtn_Click);
+            this.descendingBtn.Click += new System.EventHandler(this.DescendingBtn_Click);
             // 
             // filterBtn
             // 
@@ -630,10 +632,12 @@
             this.filterBtn.TabIndex = 30;
             this.filterBtn.Text = "Filter >=";
             this.filterBtn.UseVisualStyleBackColor = true;
-            this.filterBtn.Click += new System.EventHandler(this.filterBtn_Click);
+            this.filterBtn.Click += new System.EventHandler(this.FilterBtn_Click);
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.rightBtn);
+            this.groupBox5.Controls.Add(this.leftBtn);
             this.groupBox5.Controls.Add(this.displayLabel);
             this.groupBox5.Controls.Add(this.listBox);
             this.groupBox5.Location = new System.Drawing.Point(181, 6);
@@ -645,12 +649,12 @@
             // 
             // displayLabel
             // 
-            this.displayLabel.AutoSize = true;
-            this.displayLabel.Location = new System.Drawing.Point(83, 0);
+            this.displayLabel.Location = new System.Drawing.Point(0, 320);
             this.displayLabel.Name = "displayLabel";
-            this.displayLabel.Size = new System.Drawing.Size(108, 13);
+            this.displayLabel.Size = new System.Drawing.Size(201, 13);
             this.displayLabel.TabIndex = 1;
             this.displayLabel.Text = "Displaying x elements";
+            this.displayLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // saveTxtBtn
             // 
@@ -660,7 +664,7 @@
             this.saveTxtBtn.TabIndex = 1;
             this.saveTxtBtn.Text = "as Text";
             this.saveTxtBtn.UseVisualStyleBackColor = true;
-            this.saveTxtBtn.Click += new System.EventHandler(this.saveBtn_Click);
+            this.saveTxtBtn.Click += new System.EventHandler(this.SaveBtn_Click);
             // 
             // tabControl1
             // 
@@ -786,7 +790,7 @@
             this.reset2Btn.TabIndex = 36;
             this.reset2Btn.Text = "Reset search";
             this.reset2Btn.UseVisualStyleBackColor = true;
-            this.reset2Btn.Click += new System.EventHandler(this.resetSearchBtn_Click);
+            this.reset2Btn.Click += new System.EventHandler(this.ResetSearchBtn_Click);
             // 
             // filter4Btn
             // 
@@ -796,7 +800,7 @@
             this.filter4Btn.TabIndex = 53;
             this.filter4Btn.Text = "Filter !=";
             this.filter4Btn.UseVisualStyleBackColor = true;
-            this.filter4Btn.Click += new System.EventHandler(this.filter4Btn_Click);
+            this.filter4Btn.Click += new System.EventHandler(this.Filter4Btn_Click);
             // 
             // filter2Btn
             // 
@@ -806,7 +810,7 @@
             this.filter2Btn.TabIndex = 52;
             this.filter2Btn.Text = "Filter <=";
             this.filter2Btn.UseVisualStyleBackColor = true;
-            this.filter2Btn.Click += new System.EventHandler(this.filter2Btn_Click);
+            this.filter2Btn.Click += new System.EventHandler(this.Filter2Btn_Click);
             // 
             // filter3Btn
             // 
@@ -816,7 +820,7 @@
             this.filter3Btn.TabIndex = 51;
             this.filter3Btn.Text = "Filter ==";
             this.filter3Btn.UseVisualStyleBackColor = true;
-            this.filter3Btn.Click += new System.EventHandler(this.filter3Btn_Click);
+            this.filter3Btn.Click += new System.EventHandler(this.Filter3Btn_Click);
             // 
             // isbnFilterBox
             // 
@@ -849,7 +853,7 @@
             this.radioISBN.TabStop = true;
             this.radioISBN.Text = "ISBN";
             this.radioISBN.UseVisualStyleBackColor = true;
-            this.radioISBN.CheckedChanged += new System.EventHandler(this.radio_CheckedChanged);
+            this.radioISBN.CheckedChanged += new System.EventHandler(this.Radio_CheckedChanged);
             // 
             // radioName
             // 
@@ -861,7 +865,7 @@
             this.radioName.TabStop = true;
             this.radioName.Text = "Name";
             this.radioName.UseVisualStyleBackColor = true;
-            this.radioName.CheckedChanged += new System.EventHandler(this.radio_CheckedChanged);
+            this.radioName.CheckedChanged += new System.EventHandler(this.Radio_CheckedChanged);
             // 
             // radioTitle
             // 
@@ -873,7 +877,7 @@
             this.radioTitle.TabStop = true;
             this.radioTitle.Text = "Title";
             this.radioTitle.UseVisualStyleBackColor = true;
-            this.radioTitle.CheckedChanged += new System.EventHandler(this.radio_CheckedChanged);
+            this.radioTitle.CheckedChanged += new System.EventHandler(this.Radio_CheckedChanged);
             // 
             // pubYearFilterBox
             // 
@@ -928,7 +932,7 @@
             this.radioVotes.TabStop = true;
             this.radioVotes.Text = "User Votes";
             this.radioVotes.UseVisualStyleBackColor = true;
-            this.radioVotes.CheckedChanged += new System.EventHandler(this.radio_CheckedChanged);
+            this.radioVotes.CheckedChanged += new System.EventHandler(this.Radio_CheckedChanged);
             // 
             // radioRating
             // 
@@ -940,7 +944,7 @@
             this.radioRating.TabStop = true;
             this.radioRating.Text = "Rating";
             this.radioRating.UseVisualStyleBackColor = true;
-            this.radioRating.CheckedChanged += new System.EventHandler(this.radio_CheckedChanged);
+            this.radioRating.CheckedChanged += new System.EventHandler(this.Radio_CheckedChanged);
             // 
             // radioPubYear
             // 
@@ -952,7 +956,7 @@
             this.radioPubYear.TabStop = true;
             this.radioPubYear.Text = "Pub. Year";
             this.radioPubYear.UseVisualStyleBackColor = true;
-            this.radioPubYear.CheckedChanged += new System.EventHandler(this.radio_CheckedChanged);
+            this.radioPubYear.CheckedChanged += new System.EventHandler(this.Radio_CheckedChanged);
             // 
             // tabPage5
             // 
@@ -1033,7 +1037,7 @@
             this.saveXmlBtn.TabIndex = 7;
             this.saveXmlBtn.Text = "as XML";
             this.saveXmlBtn.UseVisualStyleBackColor = true;
-            this.saveXmlBtn.Click += new System.EventHandler(this.saveXmlBtn_Click);
+            this.saveXmlBtn.Click += new System.EventHandler(this.SaveXmlBtn_Click);
             // 
             // saveCsvBtn
             // 
@@ -1043,7 +1047,7 @@
             this.saveCsvBtn.TabIndex = 6;
             this.saveCsvBtn.Text = "as Csv";
             this.saveCsvBtn.UseVisualStyleBackColor = true;
-            this.saveCsvBtn.Click += new System.EventHandler(this.saveCsvBtn_Click);
+            this.saveCsvBtn.Click += new System.EventHandler(this.SaveCsvBtn_Click);
             // 
             // label8
             // 
@@ -1076,7 +1080,29 @@
             this.loadDataBtn.TabIndex = 2;
             this.loadDataBtn.Text = "Load";
             this.loadDataBtn.UseVisualStyleBackColor = true;
-            this.loadDataBtn.Click += new System.EventHandler(this.loadCsvBtn_Click);
+            this.loadDataBtn.Click += new System.EventHandler(this.LoadCsvBtn_Click);
+            // 
+            // leftBtn
+            // 
+            this.leftBtn.Enabled = false;
+            this.leftBtn.Location = new System.Drawing.Point(6, 297);
+            this.leftBtn.Name = "leftBtn";
+            this.leftBtn.Size = new System.Drawing.Size(20, 20);
+            this.leftBtn.TabIndex = 2;
+            this.leftBtn.Text = "<";
+            this.leftBtn.UseVisualStyleBackColor = true;
+            this.leftBtn.Click += new System.EventHandler(this.LeftBtn_Click);
+            // 
+            // rightBtn
+            // 
+            this.rightBtn.Enabled = false;
+            this.rightBtn.Location = new System.Drawing.Point(177, 298);
+            this.rightBtn.Name = "rightBtn";
+            this.rightBtn.Size = new System.Drawing.Size(20, 20);
+            this.rightBtn.TabIndex = 3;
+            this.rightBtn.Text = ">";
+            this.rightBtn.UseVisualStyleBackColor = true;
+            this.rightBtn.Click += new System.EventHandler(this.RightBtn_Click);
             // 
             // BookForm
             // 
@@ -1102,7 +1128,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.minYears)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookYearSearchInt)).EndInit();
             this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -1210,6 +1235,8 @@
         private System.Windows.Forms.Label saveDataErr;
         private System.Windows.Forms.Button reset2Btn;
         private System.Windows.Forms.Label displayLabel;
+        private System.Windows.Forms.Button rightBtn;
+        private System.Windows.Forms.Button leftBtn;
     }
 }
 
