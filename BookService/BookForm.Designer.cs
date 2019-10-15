@@ -101,16 +101,17 @@
             this.radioPubYear = new System.Windows.Forms.RadioButton();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.loadDataBtn = new System.Windows.Forms.Button();
-            this.fileSaveBox = new System.Windows.Forms.TextBox();
-            this.fileLoadBox = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.saveCsvBtn = new System.Windows.Forms.Button();
-            this.saveXmlBtn = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.saveDataErr = new System.Windows.Forms.Label();
             this.loadDataErr = new System.Windows.Forms.Label();
+            this.saveDataErr = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.saveXmlBtn = new System.Windows.Forms.Button();
+            this.saveCsvBtn = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.fileLoadBox = new System.Windows.Forms.TextBox();
+            this.fileSaveBox = new System.Windows.Forms.TextBox();
+            this.loadDataBtn = new System.Windows.Forms.Button();
+            this.reset2Btn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -739,6 +740,7 @@
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.reset2Btn);
             this.groupBox7.Controls.Add(this.filter4Btn);
             this.groupBox7.Controls.Add(this.filter2Btn);
             this.groupBox7.Controls.Add(this.filter3Btn);
@@ -961,76 +963,16 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Data management";
             // 
-            // loadDataBtn
+            // loadDataErr
             // 
-            this.loadDataBtn.Location = new System.Drawing.Point(132, 164);
-            this.loadDataBtn.Name = "loadDataBtn";
-            this.loadDataBtn.Size = new System.Drawing.Size(42, 23);
-            this.loadDataBtn.TabIndex = 2;
-            this.loadDataBtn.Text = "Load";
-            this.loadDataBtn.UseVisualStyleBackColor = true;
-            this.loadDataBtn.Click += new System.EventHandler(this.loadCsvBtn_Click);
-            // 
-            // fileSaveBox
-            // 
-            this.fileSaveBox.Location = new System.Drawing.Point(63, 41);
-            this.fileSaveBox.Name = "fileSaveBox";
-            this.fileSaveBox.Size = new System.Drawing.Size(108, 20);
-            this.fileSaveBox.TabIndex = 3;
-            // 
-            // fileLoadBox
-            // 
-            this.fileLoadBox.Location = new System.Drawing.Point(6, 167);
-            this.fileLoadBox.Name = "fileLoadBox";
-            this.fileLoadBox.Size = new System.Drawing.Size(120, 20);
-            this.fileLoadBox.TabIndex = 4;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 19);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(59, 13);
-            this.label8.TabIndex = 5;
-            this.label8.Text = "Save data:";
-            // 
-            // saveCsvBtn
-            // 
-            this.saveCsvBtn.Location = new System.Drawing.Point(63, 67);
-            this.saveCsvBtn.Name = "saveCsvBtn";
-            this.saveCsvBtn.Size = new System.Drawing.Size(51, 23);
-            this.saveCsvBtn.TabIndex = 6;
-            this.saveCsvBtn.Text = "as Csv";
-            this.saveCsvBtn.UseVisualStyleBackColor = true;
-            this.saveCsvBtn.Click += new System.EventHandler(this.saveCsvBtn_Click);
-            // 
-            // saveXmlBtn
-            // 
-            this.saveXmlBtn.Location = new System.Drawing.Point(120, 67);
-            this.saveXmlBtn.Name = "saveXmlBtn";
-            this.saveXmlBtn.Size = new System.Drawing.Size(51, 23);
-            this.saveXmlBtn.TabIndex = 7;
-            this.saveXmlBtn.Text = "as XML";
-            this.saveXmlBtn.UseVisualStyleBackColor = true;
-            this.saveXmlBtn.Click += new System.EventHandler(this.saveXmlBtn_Click);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(7, 145);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(150, 13);
-            this.label13.TabIndex = 8;
-            this.label13.Text = "Load data (name + extension):";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 44);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(52, 13);
-            this.label14.TabIndex = 9;
-            this.label14.Text = "Filename:";
+            this.loadDataErr.AutoSize = true;
+            this.loadDataErr.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.loadDataErr.Location = new System.Drawing.Point(3, 196);
+            this.loadDataErr.Name = "loadDataErr";
+            this.loadDataErr.Size = new System.Drawing.Size(91, 13);
+            this.loadDataErr.TabIndex = 16;
+            this.loadDataErr.Text = "Could not find file.";
+            this.loadDataErr.Visible = false;
             // 
             // saveDataErr
             // 
@@ -1043,16 +985,87 @@
             this.saveDataErr.Text = "Could not save data.";
             this.saveDataErr.Visible = false;
             // 
-            // loadDataErr
+            // label14
             // 
-            this.loadDataErr.AutoSize = true;
-            this.loadDataErr.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.loadDataErr.Location = new System.Drawing.Point(3, 196);
-            this.loadDataErr.Name = "loadDataErr";
-            this.loadDataErr.Size = new System.Drawing.Size(91, 13);
-            this.loadDataErr.TabIndex = 16;
-            this.loadDataErr.Text = "Could not find file.";
-            this.loadDataErr.Visible = false;
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 44);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(52, 13);
+            this.label14.TabIndex = 9;
+            this.label14.Text = "Filename:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(7, 145);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(150, 13);
+            this.label13.TabIndex = 8;
+            this.label13.Text = "Load data (name + extension):";
+            // 
+            // saveXmlBtn
+            // 
+            this.saveXmlBtn.Location = new System.Drawing.Point(120, 67);
+            this.saveXmlBtn.Name = "saveXmlBtn";
+            this.saveXmlBtn.Size = new System.Drawing.Size(51, 23);
+            this.saveXmlBtn.TabIndex = 7;
+            this.saveXmlBtn.Text = "as XML";
+            this.saveXmlBtn.UseVisualStyleBackColor = true;
+            this.saveXmlBtn.Click += new System.EventHandler(this.saveXmlBtn_Click);
+            // 
+            // saveCsvBtn
+            // 
+            this.saveCsvBtn.Location = new System.Drawing.Point(63, 67);
+            this.saveCsvBtn.Name = "saveCsvBtn";
+            this.saveCsvBtn.Size = new System.Drawing.Size(51, 23);
+            this.saveCsvBtn.TabIndex = 6;
+            this.saveCsvBtn.Text = "as Csv";
+            this.saveCsvBtn.UseVisualStyleBackColor = true;
+            this.saveCsvBtn.Click += new System.EventHandler(this.saveCsvBtn_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 19);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(59, 13);
+            this.label8.TabIndex = 5;
+            this.label8.Text = "Save data:";
+            // 
+            // fileLoadBox
+            // 
+            this.fileLoadBox.Location = new System.Drawing.Point(6, 167);
+            this.fileLoadBox.Name = "fileLoadBox";
+            this.fileLoadBox.Size = new System.Drawing.Size(120, 20);
+            this.fileLoadBox.TabIndex = 4;
+            // 
+            // fileSaveBox
+            // 
+            this.fileSaveBox.Location = new System.Drawing.Point(63, 41);
+            this.fileSaveBox.Name = "fileSaveBox";
+            this.fileSaveBox.Size = new System.Drawing.Size(108, 20);
+            this.fileSaveBox.TabIndex = 3;
+            // 
+            // loadDataBtn
+            // 
+            this.loadDataBtn.Location = new System.Drawing.Point(132, 164);
+            this.loadDataBtn.Name = "loadDataBtn";
+            this.loadDataBtn.Size = new System.Drawing.Size(42, 23);
+            this.loadDataBtn.TabIndex = 2;
+            this.loadDataBtn.Text = "Load";
+            this.loadDataBtn.UseVisualStyleBackColor = true;
+            this.loadDataBtn.Click += new System.EventHandler(this.loadCsvBtn_Click);
+            // 
+            // reset2Btn
+            // 
+            this.reset2Btn.Location = new System.Drawing.Point(94, 262);
+            this.reset2Btn.Name = "reset2Btn";
+            this.reset2Btn.Size = new System.Drawing.Size(79, 23);
+            this.reset2Btn.TabIndex = 36;
+            this.reset2Btn.Text = "Reset search";
+            this.reset2Btn.UseVisualStyleBackColor = true;
+            this.reset2Btn.Click += new System.EventHandler(this.resetSearchBtn_Click);
+
             // 
             // BookForm
             // 
@@ -1183,6 +1196,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label loadDataErr;
         private System.Windows.Forms.Label saveDataErr;
+        private System.Windows.Forms.Button reset2Btn;
     }
 }
 
