@@ -96,5 +96,10 @@ namespace BookService
         {
             throw new NotImplementedException();
         }
+
+        public void LoadData(string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

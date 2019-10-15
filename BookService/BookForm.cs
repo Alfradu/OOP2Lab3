@@ -161,20 +161,22 @@ namespace BookService
             populateListBox(bookService.BooksBetweenYears(Convert.ToInt32(minYears.Value),Convert.ToInt32(maxYears.Value)));
         }
 
-        private void saveBtn_Click(object sender, EventArgs e)
+        private void saveBtn_Click(object sender, EventArgs e) => saveFile(".txt");
+        private void saveCsvBtn_Click(object sender, EventArgs e) => saveFile(".csv");
+        private void saveXmlBtn_Click(object sender, EventArgs e) => saveFile(".xml");
+        private void saveFile(string extension)
         {
             if (lookingAtBooks)
             {
                 List<Book> newList = bookService.AllBooks().Where(b => listBox.Items.Contains(b.Title)).ToList();
-                WriteToFile<Book>.WriteToTextFile(newList);
+                WriteToFile<Book>.WriteToTextFile(newList, extension, fileSaveBox.Text);
             }
             else
             {
                 List<Author> newList = bookService.AllAuthors().Where(a => listBox.Items.Contains(a.Name)).ToList();
-                WriteToFile<Author>.WriteToTextFile(newList);
+                WriteToFile<Author>.WriteToTextFile(newList, extension, fileSaveBox.Text);
             }
         }
-
         private void descendingBtn_Click(object sender, EventArgs e)
         {
             if (lookingAtBooks)
@@ -213,8 +215,16 @@ namespace BookService
 
         private void loadCsvBtn_Click(object sender, EventArgs e)
         {
-            bookService = SimpleDI.GetService();
-            populateListBox(bookService.AllBooks());
+            try
+            {
+                bookService.LoadData(fileLoadBox.Text);
+                populateListBox(bookService.AllBooks());
+                loadDataErr.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                loadDataErr.Visible = true;
+            }
         }
 
         private void filterBtn_Click(object sender, EventArgs e)

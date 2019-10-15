@@ -25,5 +25,6 @@ namespace BookService
         void AddBook(string isbn, string title, int yop, double rating, int number);
         void AddAuthor(string name);
         void ConnectBookAndAuthor(Book book, Author author);
+        void LoadData(string name);
     }
 }

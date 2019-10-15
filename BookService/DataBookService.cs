@@ -6,20 +6,33 @@ using System.Threading.Tasks;
 
 namespace BookService
 {
-    class CsvBookService : IBookService
+    class DataBookService : IBookService
     {
         List<Author> AuthorList = new List<Author>();
         List<Book> BookList = new List<Book>();
-        CsvParser parser = new CsvParser();
-        public CsvBookService()
+        DataParser parser = new DataParser();
+        public DataBookService()
         {
-            parser.ParseCsv();
+            LoadData("books.csv");
+        }
+        public void LoadData(string name)
+        {
+            parser.ParseData(name);
             ParseBooks();
             ParseAuthors();
         }
-        public void ParseBooks() => BookList.AddRange(parser.GetBooks());
-        public void ParseAuthors() => AuthorList.AddRange(parser.GetAuthors());
-
+        public List<Book> ParseBooks()
+        {
+            BookList.Clear();
+            BookList.AddRange(parser.GetBooks());
+            return BookList;
+        }
+        public List<Author> ParseAuthors()
+        {
+            AuthorList.Clear();
+            AuthorList.AddRange(parser.GetAuthors());
+            return AuthorList;
+        }
         public List<Book> UpdateList(List<Book> newList)
         {
             BookList.Clear();
@@ -48,16 +61,8 @@ namespace BookService
             _book.Authors.Add(_author);
             _author.Books.Add(_book);
         }
-        public IEnumerable<Book> ResetBooks()
-        {
-            ParseBooks();
-            return BookList;
-        }
-        public IEnumerable<Author> ResetAuthors()
-        {
-            ParseAuthors();
-            return AuthorList;
-        }
+        public IEnumerable<Book> ResetBooks() => ParseBooks();
+        public IEnumerable<Author> ResetAuthors() => ParseAuthors();
         public IEnumerable<Book> OrderBooks() => BookList.OrderBy(b => b.Title);
         public IEnumerable<Author> OrderAuthors() => AuthorList.OrderBy(a => a.Name);
         public IEnumerable<Book> OrderDescBooks() => BookList.OrderByDescending(b => b.Title);

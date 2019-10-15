@@ -59,8 +59,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Configuration.resx</DependentUpon>
     </Compile>
-    <Compile Include="CsvBookService.cs" />
-    <Compile Include="CsvParser.cs" />
+    <Compile Include="DataBookService.cs" />
+    <Compile Include="DataParser.cs" />
     <Compile Include="IBookService.cs" />
     <Compile Include="InMemoryBookService.cs" />
     <Compile Include="Program.cs" />

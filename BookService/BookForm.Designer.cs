@@ -74,7 +74,7 @@
             this.descendingBtn = new System.Windows.Forms.Button();
             this.filterBtn = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.saveBtn = new System.Windows.Forms.Button();
+            this.saveTxtBtn = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -101,7 +101,16 @@
             this.radioPubYear = new System.Windows.Forms.RadioButton();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.loadDataBtn = new System.Windows.Forms.Button();
+            this.fileSaveBox = new System.Windows.Forms.TextBox();
+            this.fileLoadBox = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.saveCsvBtn = new System.Windows.Forms.Button();
+            this.saveXmlBtn = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.saveDataErr = new System.Windows.Forms.Label();
+            this.loadDataErr = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -631,15 +640,15 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Book service";
             // 
-            // saveBtn
+            // saveTxtBtn
             // 
-            this.saveBtn.Location = new System.Drawing.Point(6, 21);
-            this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(109, 23);
-            this.saveBtn.TabIndex = 1;
-            this.saveBtn.Text = "Save search as .txt";
-            this.saveBtn.UseVisualStyleBackColor = true;
-            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
+            this.saveTxtBtn.Location = new System.Drawing.Point(6, 67);
+            this.saveTxtBtn.Name = "saveTxtBtn";
+            this.saveTxtBtn.Size = new System.Drawing.Size(51, 23);
+            this.saveTxtBtn.TabIndex = 1;
+            this.saveTxtBtn.Text = "as Text";
+            this.saveTxtBtn.UseVisualStyleBackColor = true;
+            this.saveTxtBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
             // tabControl1
             // 
@@ -829,7 +838,6 @@
             this.radioName.Text = "Name";
             this.radioName.UseVisualStyleBackColor = true;
             this.radioName.CheckedChanged += new System.EventHandler(this.radio_CheckedChanged);
-
             // 
             // radioTitle
             // 
@@ -842,7 +850,6 @@
             this.radioTitle.Text = "Title";
             this.radioTitle.UseVisualStyleBackColor = true;
             this.radioTitle.CheckedChanged += new System.EventHandler(this.radio_CheckedChanged);
-
             // 
             // pubYearFilterBox
             // 
@@ -936,8 +943,17 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.button1);
-            this.groupBox6.Controls.Add(this.saveBtn);
+            this.groupBox6.Controls.Add(this.loadDataErr);
+            this.groupBox6.Controls.Add(this.saveDataErr);
+            this.groupBox6.Controls.Add(this.label14);
+            this.groupBox6.Controls.Add(this.label13);
+            this.groupBox6.Controls.Add(this.saveXmlBtn);
+            this.groupBox6.Controls.Add(this.saveCsvBtn);
+            this.groupBox6.Controls.Add(this.label8);
+            this.groupBox6.Controls.Add(this.fileLoadBox);
+            this.groupBox6.Controls.Add(this.fileSaveBox);
+            this.groupBox6.Controls.Add(this.loadDataBtn);
+            this.groupBox6.Controls.Add(this.saveTxtBtn);
             this.groupBox6.Location = new System.Drawing.Point(6, 6);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(180, 297);
@@ -945,15 +961,98 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Data management";
             // 
-            // button1
+            // loadDataBtn
             // 
-            this.button1.Location = new System.Drawing.Point(6, 50);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(108, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Load data from csv";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.loadCsvBtn_Click);
+            this.loadDataBtn.Location = new System.Drawing.Point(132, 164);
+            this.loadDataBtn.Name = "loadDataBtn";
+            this.loadDataBtn.Size = new System.Drawing.Size(42, 23);
+            this.loadDataBtn.TabIndex = 2;
+            this.loadDataBtn.Text = "Load";
+            this.loadDataBtn.UseVisualStyleBackColor = true;
+            this.loadDataBtn.Click += new System.EventHandler(this.loadCsvBtn_Click);
+            // 
+            // fileSaveBox
+            // 
+            this.fileSaveBox.Location = new System.Drawing.Point(63, 41);
+            this.fileSaveBox.Name = "fileSaveBox";
+            this.fileSaveBox.Size = new System.Drawing.Size(108, 20);
+            this.fileSaveBox.TabIndex = 3;
+            // 
+            // fileLoadBox
+            // 
+            this.fileLoadBox.Location = new System.Drawing.Point(6, 167);
+            this.fileLoadBox.Name = "fileLoadBox";
+            this.fileLoadBox.Size = new System.Drawing.Size(120, 20);
+            this.fileLoadBox.TabIndex = 4;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 19);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(59, 13);
+            this.label8.TabIndex = 5;
+            this.label8.Text = "Save data:";
+            // 
+            // saveCsvBtn
+            // 
+            this.saveCsvBtn.Location = new System.Drawing.Point(63, 67);
+            this.saveCsvBtn.Name = "saveCsvBtn";
+            this.saveCsvBtn.Size = new System.Drawing.Size(51, 23);
+            this.saveCsvBtn.TabIndex = 6;
+            this.saveCsvBtn.Text = "as Csv";
+            this.saveCsvBtn.UseVisualStyleBackColor = true;
+            this.saveCsvBtn.Click += new System.EventHandler(this.saveCsvBtn_Click);
+            // 
+            // saveXmlBtn
+            // 
+            this.saveXmlBtn.Location = new System.Drawing.Point(120, 67);
+            this.saveXmlBtn.Name = "saveXmlBtn";
+            this.saveXmlBtn.Size = new System.Drawing.Size(51, 23);
+            this.saveXmlBtn.TabIndex = 7;
+            this.saveXmlBtn.Text = "as XML";
+            this.saveXmlBtn.UseVisualStyleBackColor = true;
+            this.saveXmlBtn.Click += new System.EventHandler(this.saveXmlBtn_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(7, 145);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(150, 13);
+            this.label13.TabIndex = 8;
+            this.label13.Text = "Load data (name + extension):";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 44);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(52, 13);
+            this.label14.TabIndex = 9;
+            this.label14.Text = "Filename:";
+            // 
+            // saveDataErr
+            // 
+            this.saveDataErr.AutoSize = true;
+            this.saveDataErr.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.saveDataErr.Location = new System.Drawing.Point(3, 99);
+            this.saveDataErr.Name = "saveDataErr";
+            this.saveDataErr.Size = new System.Drawing.Size(105, 13);
+            this.saveDataErr.TabIndex = 15;
+            this.saveDataErr.Text = "Could not save data.";
+            this.saveDataErr.Visible = false;
+            // 
+            // loadDataErr
+            // 
+            this.loadDataErr.AutoSize = true;
+            this.loadDataErr.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.loadDataErr.Location = new System.Drawing.Point(3, 196);
+            this.loadDataErr.Name = "loadDataErr";
+            this.loadDataErr.Size = new System.Drawing.Size(91, 13);
+            this.loadDataErr.TabIndex = 16;
+            this.loadDataErr.Text = "Could not find file.";
+            this.loadDataErr.Visible = false;
             // 
             // BookForm
             // 
@@ -993,6 +1092,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.RatingFilterBox)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1048,14 +1148,14 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TextBox infoTextBox;
-        private System.Windows.Forms.Button saveBtn;
+        private System.Windows.Forms.Button saveTxtBtn;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button loadDataBtn;
         private System.Windows.Forms.Button ascendingBtn;
         private System.Windows.Forms.Button descendingBtn;
         private System.Windows.Forms.RadioButton radioRating;
@@ -1074,6 +1174,15 @@
         private System.Windows.Forms.Button filter4Btn;
         private System.Windows.Forms.Button filter2Btn;
         private System.Windows.Forms.Button filter3Btn;
+        private System.Windows.Forms.TextBox fileLoadBox;
+        private System.Windows.Forms.TextBox fileSaveBox;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button saveXmlBtn;
+        private System.Windows.Forms.Button saveCsvBtn;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label loadDataErr;
+        private System.Windows.Forms.Label saveDataErr;
     }
 }
 

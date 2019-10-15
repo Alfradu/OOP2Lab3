@@ -9,8 +9,8 @@ namespace BookService
 {
     class WriteToFile<T>
     {
-        static string path = AppDomain.CurrentDomain.BaseDirectory + @"\" + "../../files/queryResult.txt";
-        public static void WriteToTextFile(IEnumerable<T> list)
+        static string path = AppDomain.CurrentDomain.BaseDirectory + @"\" + "../../files/";
+        public static void WriteToTextFile(IEnumerable<T> list, string extension, string fileName)
         {
             List<string> s = new List<string>();
             if (list.GetType() == typeof(List<Book>))
@@ -45,9 +45,7 @@ namespace BookService
             }
             bool append = false;
             if (File.Exists(path)) { append = true; } 
-            //TODO: write to different file formats
-            // get path from user (or filename)
-            using (StreamWriter output = new StreamWriter(Path.Combine(path), append)) 
+            using (StreamWriter output = new StreamWriter(Path.Combine(path+fileName+extension), append)) 
             {
                 foreach (string line in s)
                 {

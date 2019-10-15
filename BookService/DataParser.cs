@@ -12,7 +12,7 @@ namespace BookService
     /// <summary>
     /// Parses books and authors from a csv-file with a specific format.
     /// </summary>
-    class CsvParser
+    class DataParser
     {
         private List<Book> Books = new List<Book>();
         private Dictionary<string, Author> Authors =
@@ -42,9 +42,11 @@ namespace BookService
         /// Parses a csv-file at path:"/../../files/books.csv"
         /// containing books and their authors.
         /// </summary>
-        public void ParseCsv()
+        public void ParseData(string fileName)
         {
-            var path = Application.StartupPath + "/../../Files/books.csv";
+            Books.Clear();
+            Authors.Clear();
+            var path = Application.StartupPath + "/../../Files/"+fileName;
             var lines = File.ReadAllLines(path, Encoding.GetEncoding("iso-8859-1"));
 
             foreach (string line in lines)

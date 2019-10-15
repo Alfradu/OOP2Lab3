@@ -39,7 +39,7 @@ namespace BookService
             if (serviceName == "InMemoryBookService")
                 return new InMemoryBookService();
             if (serviceName == "CsvBookService")
-                return new CsvBookService();
+                return new DataBookService();
 
             throw new InvalidOperationException("No matching service!");
         }
