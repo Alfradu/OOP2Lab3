@@ -60,12 +60,9 @@ namespace BookService
                 var culture = CultureInfo.CreateSpecificCulture("en-US");
                 double.TryParse(items[4], style, culture, out rating);
 
-                long _isbn;
-                if (long.TryParse(items[0], out _isbn)){}
-
                 Book book = new Book
                 {
-                    ISBN = _isbn,
+                    ISBN = items[0],
                     Title = items[3],
                     YearOfPublication = year,
                     Rating = rating,

@@ -39,6 +39,10 @@ namespace BookService
                     s.Add(book.ISBN + ";" + string.Join(", ", book.Authors.Select(a => a.Name)) + ";" + book.YearOfPublication + ";" + book.Title + ";" + book.Rating + ";" + book.NumberOfUserVotes);
                 }
             }
+            else
+            {
+                s.Add("Error writing to file.");
+            }
             bool append = false;
             if (File.Exists(path)) { append = true; } 
             //TODO: write to different file formats

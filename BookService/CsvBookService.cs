@@ -10,32 +10,34 @@ namespace BookService
     {
         List<Author> AuthorList = new List<Author>();
         List<Book> BookList = new List<Book>();
+        CsvParser parser = new CsvParser();
         public CsvBookService()
         {
-            CsvParser parser = new CsvParser();
-            ParseData(parser);
-        }
-        public void ParseData(CsvParser parser)
-        {
             parser.ParseCsv();
-            AuthorList.AddRange(parser.GetAuthors());
-            BookList.AddRange(parser.GetBooks());
+            ParseBooks();
+            ParseAuthors();
         }
-        public IEnumerable<Book> AllBooks() => BookList;
-        public IEnumerable<Author> AllAuthors() => AuthorList;
-        public IEnumerable<Book> BooksByAuthor(string name) => BookList.Where(book => book.Authors.Any(a => a.Name == name));
-        public IEnumerable<Book> BooksByYear(int year) => BookList.Where(book => book.YearOfPublication == year);
-        public IEnumerable<Book> BooksBetweenYears(int yearA, int yearB) => BookList.OrderBy(b => b.YearOfPublication).Where(book => book.YearOfPublication >= yearA && book.YearOfPublication <= yearB);
-        public IEnumerable<Book> LeastFavouriteBooks() => BookList.OrderBy(book => book.Rating);
-        public IEnumerable<Book> MostFavouriteBooks(int number) => BookList.OrderByDescending(book => book.Rating).Take(number);
-        public IEnumerable<Book> FilterBooksBy(Func<Book, bool> expression) => BookList;
+        public void ParseBooks() => BookList.AddRange(parser.GetBooks());
+        public void ParseAuthors() => AuthorList.AddRange(parser.GetAuthors());
 
+        public List<Book> UpdateList(List<Book> newList)
+        {
+            BookList.Clear();
+            BookList.AddRange(newList);
+            return BookList;
+        }
+        public List<Author> UpdateList(List<Author> newList)
+        {
+            AuthorList.Clear();
+            AuthorList.AddRange(newList);
+            return AuthorList;
+        }
         public void AddAuthor(string name)
         {
             AuthorList.Add(new Author(name));
         }
 
-        public void AddBook(long isbn, string title, int yop, double rating, int number)
+        public void AddBook(string isbn, string title, int yop, double rating, int number)
         {
             BookList.Add(new Book(isbn, title, yop, rating, number));
         }
@@ -46,5 +48,27 @@ namespace BookService
             _book.Authors.Add(_author);
             _author.Books.Add(_book);
         }
+        public IEnumerable<Book> ResetBooks()
+        {
+            ParseBooks();
+            return BookList;
+        }
+        public IEnumerable<Author> ResetAuthors()
+        {
+            ParseAuthors();
+            return AuthorList;
+        }
+        public IEnumerable<Book> OrderBooks() => BookList.OrderBy(b => b.Title);
+        public IEnumerable<Author> OrderAuthors() => AuthorList.OrderBy(a => a.Name);
+        public IEnumerable<Book> OrderDescBooks() => BookList.OrderByDescending(b => b.Title);
+        public IEnumerable<Author> OrderDescAuthors() => AuthorList.OrderByDescending(a => a.Name);
+        public IEnumerable<Book> AllBooks() => BookList;
+        public IEnumerable<Author> AllAuthors() => AuthorList;
+        public IEnumerable<Book> BooksByAuthor(string name) => UpdateList(BookList.Where(book => book.Authors.Any(a => a.Name == name)).ToList());
+        public IEnumerable<Book> BooksByYear(int year) => UpdateList(BookList.Where(book => book.YearOfPublication == year).ToList());
+        public IEnumerable<Book> BooksBetweenYears(int yearA, int yearB) => UpdateList(BookList.OrderBy(b => b.YearOfPublication).Where(book => book.YearOfPublication >= yearA && book.YearOfPublication <= yearB).ToList());
+        public IEnumerable<Book> LeastFavouriteBooks() => UpdateList( BookList.OrderBy(book => book.Rating).ToList());
+        public IEnumerable<Book> MostFavouriteBooks(int number) => UpdateList( BookList.OrderByDescending(book => book.Rating).Take(number).ToList());
+        public IEnumerable<Book> FilterBooksBy(Func<Book, bool> expression) => BookList.Where(expression);
     }
 }

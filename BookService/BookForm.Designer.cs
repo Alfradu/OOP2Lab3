@@ -56,8 +56,7 @@
             this.bookNameText = new System.Windows.Forms.TextBox();
             this.mergeBtn = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.ascendingBtn = new System.Windows.Forms.Button();
-            this.descendingBtn = new System.Windows.Forms.Button();
+            this.resetSearchBtn = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.topRatedNumber = new System.Windows.Forms.NumericUpDown();
             this.topRatedBtn = new System.Windows.Forms.Button();
@@ -71,8 +70,8 @@
             this.bookYearSearchInt = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.bookFilterText = new System.Windows.Forms.TextBox();
+            this.ascendingBtn = new System.Windows.Forms.Button();
+            this.descendingBtn = new System.Windows.Forms.Button();
             this.filterBtn = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.saveBtn = new System.Windows.Forms.Button();
@@ -85,17 +84,24 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.filter4Btn = new System.Windows.Forms.Button();
+            this.filter2Btn = new System.Windows.Forms.Button();
+            this.filter3Btn = new System.Windows.Forms.Button();
+            this.isbnFilterBox = new System.Windows.Forms.TextBox();
+            this.nameFilterBox = new System.Windows.Forms.TextBox();
+            this.titleFilterBox = new System.Windows.Forms.TextBox();
+            this.radioISBN = new System.Windows.Forms.RadioButton();
+            this.radioName = new System.Windows.Forms.RadioButton();
+            this.radioTitle = new System.Windows.Forms.RadioButton();
+            this.pubYearFilterBox = new System.Windows.Forms.NumericUpDown();
+            this.VotesFilterbox = new System.Windows.Forms.NumericUpDown();
+            this.RatingFilterBox = new System.Windows.Forms.NumericUpDown();
+            this.radioVotes = new System.Windows.Forms.RadioButton();
+            this.radioRating = new System.Windows.Forms.RadioButton();
+            this.radioPubYear = new System.Windows.Forms.RadioButton();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -113,6 +119,9 @@
             this.tabPage4.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pubYearFilterBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VotesFilterbox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RatingFilterBox)).BeginInit();
             this.tabPage5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.SuspendLayout();
@@ -128,27 +137,27 @@
             // 
             // displayBooksBtn
             // 
-            this.displayBooksBtn.Location = new System.Drawing.Point(8, 38);
+            this.displayBooksBtn.Location = new System.Drawing.Point(9, 15);
             this.displayBooksBtn.Name = "displayBooksBtn";
             this.displayBooksBtn.Size = new System.Drawing.Size(79, 23);
             this.displayBooksBtn.TabIndex = 1;
-            this.displayBooksBtn.Text = "All Books";
+            this.displayBooksBtn.Text = "Show Books";
             this.displayBooksBtn.UseVisualStyleBackColor = true;
             this.displayBooksBtn.Click += new System.EventHandler(this.displayBooksBtn_Click);
             // 
             // displayAuthorsBtn
             // 
-            this.displayAuthorsBtn.Location = new System.Drawing.Point(93, 38);
+            this.displayAuthorsBtn.Location = new System.Drawing.Point(90, 15);
             this.displayAuthorsBtn.Name = "displayAuthorsBtn";
-            this.displayAuthorsBtn.Size = new System.Drawing.Size(79, 23);
+            this.displayAuthorsBtn.Size = new System.Drawing.Size(81, 23);
             this.displayAuthorsBtn.TabIndex = 2;
-            this.displayAuthorsBtn.Text = "All Authors";
+            this.displayAuthorsBtn.Text = "Show Authors";
             this.displayAuthorsBtn.UseVisualStyleBackColor = true;
             this.displayAuthorsBtn.Click += new System.EventHandler(this.displayAuthorsBtn_Click);
             // 
             // bookAuthorSearchBtn
             // 
-            this.bookAuthorSearchBtn.Location = new System.Drawing.Point(114, 149);
+            this.bookAuthorSearchBtn.Location = new System.Drawing.Point(114, 126);
             this.bookAuthorSearchBtn.Name = "bookAuthorSearchBtn";
             this.bookAuthorSearchBtn.Size = new System.Drawing.Size(59, 23);
             this.bookAuthorSearchBtn.TabIndex = 3;
@@ -158,7 +167,7 @@
             // 
             // bookYearSearchBtn
             // 
-            this.bookYearSearchBtn.Location = new System.Drawing.Point(114, 193);
+            this.bookYearSearchBtn.Location = new System.Drawing.Point(114, 170);
             this.bookYearSearchBtn.Name = "bookYearSearchBtn";
             this.bookYearSearchBtn.Size = new System.Drawing.Size(59, 23);
             this.bookYearSearchBtn.TabIndex = 4;
@@ -168,7 +177,7 @@
             // 
             // bookAuthorSearchText
             // 
-            this.bookAuthorSearchText.Location = new System.Drawing.Point(11, 151);
+            this.bookAuthorSearchText.Location = new System.Drawing.Point(11, 128);
             this.bookAuthorSearchText.Name = "bookAuthorSearchText";
             this.bookAuthorSearchText.Size = new System.Drawing.Size(97, 20);
             this.bookAuthorSearchText.TabIndex = 5;
@@ -379,7 +388,7 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.label14);
+            this.groupBox4.Controls.Add(this.resetSearchBtn);
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.topRatedNumber);
             this.groupBox4.Controls.Add(this.topRatedBtn);
@@ -405,30 +414,20 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Search list";
             // 
-            // ascendingBtn
+            // resetSearchBtn
             // 
-            this.ascendingBtn.Location = new System.Drawing.Point(9, 225);
-            this.ascendingBtn.Name = "ascendingBtn";
-            this.ascendingBtn.Size = new System.Drawing.Size(75, 23);
-            this.ascendingBtn.TabIndex = 36;
-            this.ascendingBtn.Text = "Ascending";
-            this.ascendingBtn.UseVisualStyleBackColor = true;
-            this.ascendingBtn.Click += new System.EventHandler(this.ascendingBtn_Click);
-            // 
-            // descendingBtn
-            // 
-            this.descendingBtn.Location = new System.Drawing.Point(102, 225);
-            this.descendingBtn.Name = "descendingBtn";
-            this.descendingBtn.Size = new System.Drawing.Size(75, 23);
-            this.descendingBtn.TabIndex = 35;
-            this.descendingBtn.Text = "Descending";
-            this.descendingBtn.UseVisualStyleBackColor = true;
-            this.descendingBtn.Click += new System.EventHandler(this.descendingBtn_Click);
+            this.resetSearchBtn.Location = new System.Drawing.Point(94, 262);
+            this.resetSearchBtn.Name = "resetSearchBtn";
+            this.resetSearchBtn.Size = new System.Drawing.Size(79, 23);
+            this.resetSearchBtn.TabIndex = 35;
+            this.resetSearchBtn.Text = "Reset search";
+            this.resetSearchBtn.UseVisualStyleBackColor = true;
+            this.resetSearchBtn.Click += new System.EventHandler(this.resetSearchBtn_Click);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(7, 91);
+            this.label9.Location = new System.Drawing.Point(7, 68);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(121, 13);
             this.label9.TabIndex = 34;
@@ -436,7 +435,7 @@
             // 
             // topRatedNumber
             // 
-            this.topRatedNumber.Location = new System.Drawing.Point(11, 109);
+            this.topRatedNumber.Location = new System.Drawing.Point(11, 86);
             this.topRatedNumber.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -453,7 +452,7 @@
             // 
             // topRatedBtn
             // 
-            this.topRatedBtn.Location = new System.Drawing.Point(107, 108);
+            this.topRatedBtn.Location = new System.Drawing.Point(107, 85);
             this.topRatedBtn.Name = "topRatedBtn";
             this.topRatedBtn.Size = new System.Drawing.Size(66, 23);
             this.topRatedBtn.TabIndex = 29;
@@ -463,17 +462,17 @@
             // 
             // leastFavBtn
             // 
-            this.leastFavBtn.Location = new System.Drawing.Point(9, 66);
+            this.leastFavBtn.Location = new System.Drawing.Point(9, 43);
             this.leastFavBtn.Name = "leastFavBtn";
             this.leastFavBtn.Size = new System.Drawing.Size(163, 22);
             this.leastFavBtn.TabIndex = 28;
-            this.leastFavBtn.Text = "Display least Favourite books";
+            this.leastFavBtn.Text = "Show least Favourite books";
             this.leastFavBtn.UseVisualStyleBackColor = true;
             this.leastFavBtn.Click += new System.EventHandler(this.leastFavBtn_Click);
             // 
             // betweenYearsBtn
             // 
-            this.betweenYearsBtn.Location = new System.Drawing.Point(124, 256);
+            this.betweenYearsBtn.Location = new System.Drawing.Point(124, 233);
             this.betweenYearsBtn.Name = "betweenYearsBtn";
             this.betweenYearsBtn.Size = new System.Drawing.Size(49, 23);
             this.betweenYearsBtn.TabIndex = 27;
@@ -484,7 +483,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(67, 241);
+            this.label7.Location = new System.Drawing.Point(67, 218);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(49, 13);
             this.label7.TabIndex = 26;
@@ -493,7 +492,7 @@
             // label123
             // 
             this.label123.AutoSize = true;
-            this.label123.Location = new System.Drawing.Point(8, 240);
+            this.label123.Location = new System.Drawing.Point(8, 217);
             this.label123.Name = "label123";
             this.label123.Size = new System.Drawing.Size(52, 13);
             this.label123.TabIndex = 25;
@@ -502,7 +501,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 225);
+            this.label2.Location = new System.Drawing.Point(7, 202);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(154, 13);
             this.label2.TabIndex = 24;
@@ -510,7 +509,7 @@
             // 
             // maxYears
             // 
-            this.maxYears.Location = new System.Drawing.Point(70, 259);
+            this.maxYears.Location = new System.Drawing.Point(70, 236);
             this.maxYears.Maximum = new decimal(new int[] {
             3000,
             0,
@@ -532,7 +531,7 @@
             // 
             // minYears
             // 
-            this.minYears.Location = new System.Drawing.Point(11, 259);
+            this.minYears.Location = new System.Drawing.Point(11, 236);
             this.minYears.Maximum = new decimal(new int[] {
             3000,
             0,
@@ -554,7 +553,7 @@
             // 
             // bookYearSearchInt
             // 
-            this.bookYearSearchInt.Location = new System.Drawing.Point(11, 196);
+            this.bookYearSearchInt.Location = new System.Drawing.Point(11, 173);
             this.bookYearSearchInt.Maximum = new decimal(new int[] {
             3000,
             0,
@@ -577,7 +576,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 134);
+            this.label1.Location = new System.Drawing.Point(6, 111);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(129, 13);
             this.label1.TabIndex = 8;
@@ -586,35 +585,39 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 177);
+            this.label12.Location = new System.Drawing.Point(6, 154);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(158, 13);
             this.label12.TabIndex = 7;
             this.label12.Text = "Search book(s) by specific year:";
             // 
-            // label8
+            // ascendingBtn
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 19);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(88, 13);
-            this.label8.TabIndex = 33;
-            this.label8.Text = "Filter list items by:";
+            this.ascendingBtn.Location = new System.Drawing.Point(102, 209);
+            this.ascendingBtn.Name = "ascendingBtn";
+            this.ascendingBtn.Size = new System.Drawing.Size(75, 23);
+            this.ascendingBtn.TabIndex = 36;
+            this.ascendingBtn.Text = "Ascending";
+            this.ascendingBtn.UseVisualStyleBackColor = true;
+            this.ascendingBtn.Click += new System.EventHandler(this.ascendingBtn_Click);
             // 
-            // bookFilterText
+            // descendingBtn
             // 
-            this.bookFilterText.Location = new System.Drawing.Point(7, 41);
-            this.bookFilterText.Name = "bookFilterText";
-            this.bookFilterText.Size = new System.Drawing.Size(58, 20);
-            this.bookFilterText.TabIndex = 31;
+            this.descendingBtn.Location = new System.Drawing.Point(5, 209);
+            this.descendingBtn.Name = "descendingBtn";
+            this.descendingBtn.Size = new System.Drawing.Size(75, 23);
+            this.descendingBtn.TabIndex = 35;
+            this.descendingBtn.Text = "Descending";
+            this.descendingBtn.UseVisualStyleBackColor = true;
+            this.descendingBtn.Click += new System.EventHandler(this.descendingBtn_Click);
             // 
             // filterBtn
             // 
-            this.filterBtn.Location = new System.Drawing.Point(6, 67);
+            this.filterBtn.Location = new System.Drawing.Point(7, 151);
             this.filterBtn.Name = "filterBtn";
             this.filterBtn.Size = new System.Drawing.Size(73, 23);
             this.filterBtn.TabIndex = 30;
-            this.filterBtn.Text = "Filter";
+            this.filterBtn.Text = "Filter >=";
             this.filterBtn.UseVisualStyleBackColor = true;
             this.filterBtn.Click += new System.EventHandler(this.filterBtn_Click);
             // 
@@ -727,18 +730,24 @@
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.radioButton6);
-            this.groupBox7.Controls.Add(this.radioButton5);
+            this.groupBox7.Controls.Add(this.filter4Btn);
+            this.groupBox7.Controls.Add(this.filter2Btn);
+            this.groupBox7.Controls.Add(this.filter3Btn);
+            this.groupBox7.Controls.Add(this.isbnFilterBox);
+            this.groupBox7.Controls.Add(this.nameFilterBox);
+            this.groupBox7.Controls.Add(this.titleFilterBox);
+            this.groupBox7.Controls.Add(this.radioISBN);
+            this.groupBox7.Controls.Add(this.radioName);
+            this.groupBox7.Controls.Add(this.radioTitle);
+            this.groupBox7.Controls.Add(this.pubYearFilterBox);
+            this.groupBox7.Controls.Add(this.VotesFilterbox);
+            this.groupBox7.Controls.Add(this.RatingFilterBox);
+            this.groupBox7.Controls.Add(this.radioVotes);
             this.groupBox7.Controls.Add(this.ascendingBtn);
             this.groupBox7.Controls.Add(this.descendingBtn);
-            this.groupBox7.Controls.Add(this.label13);
-            this.groupBox7.Controls.Add(this.radioButton4);
-            this.groupBox7.Controls.Add(this.radioButton3);
-            this.groupBox7.Controls.Add(this.radioButton2);
-            this.groupBox7.Controls.Add(this.radioButton1);
+            this.groupBox7.Controls.Add(this.radioRating);
+            this.groupBox7.Controls.Add(this.radioPubYear);
             this.groupBox7.Controls.Add(this.filterBtn);
-            this.groupBox7.Controls.Add(this.label8);
-            this.groupBox7.Controls.Add(this.bookFilterText);
             this.groupBox7.Location = new System.Drawing.Point(6, 6);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(183, 298);
@@ -746,58 +755,165 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Filter list";
             // 
-            // label13
+            // filter4Btn
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 140);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(85, 13);
-            this.label13.TabIndex = 40;
-            this.label13.Text = "Sort list items by:";
+            this.filter4Btn.Location = new System.Drawing.Point(102, 180);
+            this.filter4Btn.Name = "filter4Btn";
+            this.filter4Btn.Size = new System.Drawing.Size(73, 23);
+            this.filter4Btn.TabIndex = 53;
+            this.filter4Btn.Text = "Filter !=";
+            this.filter4Btn.UseVisualStyleBackColor = true;
+            this.filter4Btn.Click += new System.EventHandler(this.filter4Btn_Click);
             // 
-            // radioButton4
+            // filter2Btn
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(109, 202);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(56, 17);
-            this.radioButton4.TabIndex = 39;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Rating";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.filter2Btn.Location = new System.Drawing.Point(102, 151);
+            this.filter2Btn.Name = "filter2Btn";
+            this.filter2Btn.Size = new System.Drawing.Size(73, 23);
+            this.filter2Btn.TabIndex = 52;
+            this.filter2Btn.Text = "Filter <=";
+            this.filter2Btn.UseVisualStyleBackColor = true;
+            this.filter2Btn.Click += new System.EventHandler(this.filter2Btn_Click);
             // 
-            // radioButton3
+            // filter3Btn
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(9, 202);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(102, 17);
-            this.radioButton3.TabIndex = 38;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Publication Year";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.filter3Btn.Location = new System.Drawing.Point(7, 180);
+            this.filter3Btn.Name = "filter3Btn";
+            this.filter3Btn.Size = new System.Drawing.Size(73, 23);
+            this.filter3Btn.TabIndex = 51;
+            this.filter3Btn.Text = "Filter ==";
+            this.filter3Btn.UseVisualStyleBackColor = true;
+            this.filter3Btn.Click += new System.EventHandler(this.filter3Btn_Click);
             // 
-            // radioButton2
+            // isbnFilterBox
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(9, 179);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(50, 17);
-            this.radioButton2.TabIndex = 37;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "ISBN";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.isbnFilterBox.Location = new System.Drawing.Point(102, 13);
+            this.isbnFilterBox.Name = "isbnFilterBox";
+            this.isbnFilterBox.Size = new System.Drawing.Size(75, 20);
+            this.isbnFilterBox.TabIndex = 50;
             // 
-            // radioButton1
+            // nameFilterBox
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(9, 156);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(73, 17);
-            this.radioButton1.TabIndex = 36;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Book Title";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.nameFilterBox.Location = new System.Drawing.Point(102, 36);
+            this.nameFilterBox.Name = "nameFilterBox";
+            this.nameFilterBox.Size = new System.Drawing.Size(75, 20);
+            this.nameFilterBox.TabIndex = 49;
+            // 
+            // titleFilterBox
+            // 
+            this.titleFilterBox.Location = new System.Drawing.Point(102, 59);
+            this.titleFilterBox.Name = "titleFilterBox";
+            this.titleFilterBox.Size = new System.Drawing.Size(75, 20);
+            this.titleFilterBox.TabIndex = 48;
+            // 
+            // radioISBN
+            // 
+            this.radioISBN.AutoSize = true;
+            this.radioISBN.Location = new System.Drawing.Point(9, 13);
+            this.radioISBN.Name = "radioISBN";
+            this.radioISBN.Size = new System.Drawing.Size(50, 17);
+            this.radioISBN.TabIndex = 47;
+            this.radioISBN.TabStop = true;
+            this.radioISBN.Text = "ISBN";
+            this.radioISBN.UseVisualStyleBackColor = true;
+            // 
+            // radioName
+            // 
+            this.radioName.AutoSize = true;
+            this.radioName.Location = new System.Drawing.Point(9, 36);
+            this.radioName.Name = "radioName";
+            this.radioName.Size = new System.Drawing.Size(53, 17);
+            this.radioName.TabIndex = 46;
+            this.radioName.TabStop = true;
+            this.radioName.Text = "Name";
+            this.radioName.UseVisualStyleBackColor = true;
+            // 
+            // radioTitle
+            // 
+            this.radioTitle.AutoSize = true;
+            this.radioTitle.Location = new System.Drawing.Point(9, 59);
+            this.radioTitle.Name = "radioTitle";
+            this.radioTitle.Size = new System.Drawing.Size(45, 17);
+            this.radioTitle.TabIndex = 45;
+            this.radioTitle.TabStop = true;
+            this.radioTitle.Text = "Title";
+            this.radioTitle.UseVisualStyleBackColor = true;
+            // 
+            // pubYearFilterBox
+            // 
+            this.pubYearFilterBox.Location = new System.Drawing.Point(102, 82);
+            this.pubYearFilterBox.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.pubYearFilterBox.Name = "pubYearFilterBox";
+            this.pubYearFilterBox.Size = new System.Drawing.Size(75, 20);
+            this.pubYearFilterBox.TabIndex = 44;
+            // 
+            // VotesFilterbox
+            // 
+            this.VotesFilterbox.Location = new System.Drawing.Point(102, 105);
+            this.VotesFilterbox.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.VotesFilterbox.Name = "VotesFilterbox";
+            this.VotesFilterbox.Size = new System.Drawing.Size(75, 20);
+            this.VotesFilterbox.TabIndex = 43;
+            // 
+            // RatingFilterBox
+            // 
+            this.RatingFilterBox.DecimalPlaces = 1;
+            this.RatingFilterBox.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.RatingFilterBox.Location = new System.Drawing.Point(102, 128);
+            this.RatingFilterBox.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.RatingFilterBox.Name = "RatingFilterBox";
+            this.RatingFilterBox.Size = new System.Drawing.Size(75, 20);
+            this.RatingFilterBox.TabIndex = 42;
+            // 
+            // radioVotes
+            // 
+            this.radioVotes.AutoSize = true;
+            this.radioVotes.Location = new System.Drawing.Point(9, 105);
+            this.radioVotes.Name = "radioVotes";
+            this.radioVotes.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.radioVotes.Size = new System.Drawing.Size(77, 17);
+            this.radioVotes.TabIndex = 41;
+            this.radioVotes.TabStop = true;
+            this.radioVotes.Text = "User Votes";
+            this.radioVotes.UseVisualStyleBackColor = true;
+            // 
+            // radioRating
+            // 
+            this.radioRating.AutoSize = true;
+            this.radioRating.Location = new System.Drawing.Point(9, 128);
+            this.radioRating.Name = "radioRating";
+            this.radioRating.Size = new System.Drawing.Size(56, 17);
+            this.radioRating.TabIndex = 39;
+            this.radioRating.TabStop = true;
+            this.radioRating.Text = "Rating";
+            this.radioRating.UseVisualStyleBackColor = true;
+            // 
+            // radioPubYear
+            // 
+            this.radioPubYear.AutoSize = true;
+            this.radioPubYear.Location = new System.Drawing.Point(9, 82);
+            this.radioPubYear.Name = "radioPubYear";
+            this.radioPubYear.Size = new System.Drawing.Size(72, 17);
+            this.radioPubYear.TabIndex = 38;
+            this.radioPubYear.TabStop = true;
+            this.radioPubYear.Text = "Pub. Year";
+            this.radioPubYear.UseVisualStyleBackColor = true;
             // 
             // tabPage5
             // 
@@ -829,39 +945,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "Load data from csv";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(57, 20);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(78, 13);
-            this.label14.TabIndex = 35;
-            this.label14.Text = "(Reset Search)";
-            // 
-            // radioButton5
-            // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(109, 179);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.radioButton5.Size = new System.Drawing.Size(77, 17);
-            this.radioButton5.TabIndex = 41;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "User Votes";
-            this.radioButton5.UseVisualStyleBackColor = true;
-            // 
-            // radioButton6
-            // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(109, 156);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.radioButton6.Size = new System.Drawing.Size(87, 17);
-            this.radioButton6.TabIndex = 42;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "Author Name";
-            this.radioButton6.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.loadCsvBtn_Click);
             // 
             // BookForm
             // 
@@ -896,6 +980,9 @@
             this.tabPage6.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pubYearFilterBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VotesFilterbox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RatingFilterBox)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -944,9 +1031,7 @@
         private System.Windows.Forms.Label label123;
         private System.Windows.Forms.Button betweenYearsBtn;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown topRatedNumber;
-        private System.Windows.Forms.TextBox bookFilterText;
         private System.Windows.Forms.Button filterBtn;
         private System.Windows.Forms.Button topRatedBtn;
         private System.Windows.Forms.Button leastFavBtn;
@@ -965,14 +1050,22 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button ascendingBtn;
         private System.Windows.Forms.Button descendingBtn;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton6;
+        private System.Windows.Forms.RadioButton radioRating;
+        private System.Windows.Forms.RadioButton radioPubYear;
+        private System.Windows.Forms.RadioButton radioVotes;
+        private System.Windows.Forms.Button resetSearchBtn;
+        private System.Windows.Forms.NumericUpDown pubYearFilterBox;
+        private System.Windows.Forms.NumericUpDown VotesFilterbox;
+        private System.Windows.Forms.NumericUpDown RatingFilterBox;
+        private System.Windows.Forms.TextBox isbnFilterBox;
+        private System.Windows.Forms.TextBox nameFilterBox;
+        private System.Windows.Forms.TextBox titleFilterBox;
+        private System.Windows.Forms.RadioButton radioISBN;
+        private System.Windows.Forms.RadioButton radioName;
+        private System.Windows.Forms.RadioButton radioTitle;
+        private System.Windows.Forms.Button filter4Btn;
+        private System.Windows.Forms.Button filter2Btn;
+        private System.Windows.Forms.Button filter3Btn;
     }
 }
 
