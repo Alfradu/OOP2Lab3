@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -31,12 +32,14 @@ namespace BookService
         {
             listBox.Items.Clear();
             books.ToList().ForEach(b => listBox.Items.Add(b.Title));
+            displayLabel.Text = "(Displaying " + listBox.Items.Count.ToString() + " entries.)";
             lookingAtBooks = true;
         }
         private void populateListBox(IEnumerable<Author> authors)
         {
             listBox.Items.Clear();
             authors.ToList().ForEach(a => listBox.Items.Add(a.Name));
+            displayLabel.Text = "(Displaying " + listBox.Items.Count.ToString() + " entries.)";
             lookingAtBooks = false;
         }
         

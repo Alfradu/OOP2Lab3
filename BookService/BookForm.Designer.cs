@@ -74,6 +74,7 @@
             this.descendingBtn = new System.Windows.Forms.Button();
             this.filterBtn = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.displayLabel = new System.Windows.Forms.Label();
             this.saveTxtBtn = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -84,6 +85,7 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.reset2Btn = new System.Windows.Forms.Button();
             this.filter4Btn = new System.Windows.Forms.Button();
             this.filter2Btn = new System.Windows.Forms.Button();
             this.filter3Btn = new System.Windows.Forms.Button();
@@ -111,7 +113,6 @@
             this.fileLoadBox = new System.Windows.Forms.TextBox();
             this.fileSaveBox = new System.Windows.Forms.TextBox();
             this.loadDataBtn = new System.Windows.Forms.Button();
-            this.reset2Btn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -633,6 +634,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.displayLabel);
             this.groupBox5.Controls.Add(this.listBox);
             this.groupBox5.Location = new System.Drawing.Point(181, 6);
             this.groupBox5.Name = "groupBox5";
@@ -640,6 +642,15 @@
             this.groupBox5.TabIndex = 20;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Book service";
+            // 
+            // displayLabel
+            // 
+            this.displayLabel.AutoSize = true;
+            this.displayLabel.Location = new System.Drawing.Point(83, 0);
+            this.displayLabel.Name = "displayLabel";
+            this.displayLabel.Size = new System.Drawing.Size(108, 13);
+            this.displayLabel.TabIndex = 1;
+            this.displayLabel.Text = "Displaying x elements";
             // 
             // saveTxtBtn
             // 
@@ -698,6 +709,7 @@
             // infoTextBox
             // 
             this.infoTextBox.AcceptsReturn = true;
+            this.infoTextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.infoTextBox.Location = new System.Drawing.Point(4, 195);
             this.infoTextBox.Multiline = true;
             this.infoTextBox.Name = "infoTextBox";
@@ -765,6 +777,16 @@
             this.groupBox7.TabIndex = 0;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Filter list";
+            // 
+            // reset2Btn
+            // 
+            this.reset2Btn.Location = new System.Drawing.Point(94, 262);
+            this.reset2Btn.Name = "reset2Btn";
+            this.reset2Btn.Size = new System.Drawing.Size(79, 23);
+            this.reset2Btn.TabIndex = 36;
+            this.reset2Btn.Text = "Reset search";
+            this.reset2Btn.UseVisualStyleBackColor = true;
+            this.reset2Btn.Click += new System.EventHandler(this.resetSearchBtn_Click);
             // 
             // filter4Btn
             // 
@@ -1056,17 +1078,6 @@
             this.loadDataBtn.UseVisualStyleBackColor = true;
             this.loadDataBtn.Click += new System.EventHandler(this.loadCsvBtn_Click);
             // 
-            // reset2Btn
-            // 
-            this.reset2Btn.Location = new System.Drawing.Point(94, 262);
-            this.reset2Btn.Name = "reset2Btn";
-            this.reset2Btn.Size = new System.Drawing.Size(79, 23);
-            this.reset2Btn.TabIndex = 36;
-            this.reset2Btn.Text = "Reset search";
-            this.reset2Btn.UseVisualStyleBackColor = true;
-            this.reset2Btn.Click += new System.EventHandler(this.resetSearchBtn_Click);
-
-            // 
             // BookForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1091,6 +1102,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.minYears)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookYearSearchInt)).EndInit();
             this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -1197,6 +1209,7 @@
         private System.Windows.Forms.Label loadDataErr;
         private System.Windows.Forms.Label saveDataErr;
         private System.Windows.Forms.Button reset2Btn;
+        private System.Windows.Forms.Label displayLabel;
     }
 }
 
