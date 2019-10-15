@@ -304,5 +304,19 @@ namespace BookService
                 populateListBox(bookService.FilterBooksBy(a => a.Title != titleFilterBox.Text));
             }
         }
+
+        private void radio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioISBN.Checked || radioName.Checked || radioTitle.Checked)
+            {
+                filterBtn.Enabled = false;
+                filter2Btn.Enabled = false;
+            }
+            else
+            {
+                filterBtn.Enabled = true;
+                filter2Btn.Enabled = true;
+            }
+        }
     }
 }

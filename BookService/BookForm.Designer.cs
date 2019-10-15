@@ -816,6 +816,7 @@
             this.radioISBN.TabStop = true;
             this.radioISBN.Text = "ISBN";
             this.radioISBN.UseVisualStyleBackColor = true;
+            this.radioISBN.CheckedChanged += new System.EventHandler(this.radio_CheckedChanged);
             // 
             // radioName
             // 
@@ -827,6 +828,8 @@
             this.radioName.TabStop = true;
             this.radioName.Text = "Name";
             this.radioName.UseVisualStyleBackColor = true;
+            this.radioName.CheckedChanged += new System.EventHandler(this.radio_CheckedChanged);
+
             // 
             // radioTitle
             // 
@@ -838,6 +841,8 @@
             this.radioTitle.TabStop = true;
             this.radioTitle.Text = "Title";
             this.radioTitle.UseVisualStyleBackColor = true;
+            this.radioTitle.CheckedChanged += new System.EventHandler(this.radio_CheckedChanged);
+
             // 
             // pubYearFilterBox
             // 
@@ -892,6 +897,7 @@
             this.radioVotes.TabStop = true;
             this.radioVotes.Text = "User Votes";
             this.radioVotes.UseVisualStyleBackColor = true;
+            this.radioVotes.CheckedChanged += new System.EventHandler(this.radio_CheckedChanged);
             // 
             // radioRating
             // 
@@ -903,6 +909,7 @@
             this.radioRating.TabStop = true;
             this.radioRating.Text = "Rating";
             this.radioRating.UseVisualStyleBackColor = true;
+            this.radioRating.CheckedChanged += new System.EventHandler(this.radio_CheckedChanged);
             // 
             // radioPubYear
             // 
@@ -914,6 +921,7 @@
             this.radioPubYear.TabStop = true;
             this.radioPubYear.Text = "Pub. Year";
             this.radioPubYear.UseVisualStyleBackColor = true;
+            this.radioPubYear.CheckedChanged += new System.EventHandler(this.radio_CheckedChanged);
             // 
             // tabPage5
             // 
