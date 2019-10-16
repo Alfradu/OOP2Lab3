@@ -74,6 +74,8 @@
             this.descendingBtn = new System.Windows.Forms.Button();
             this.filterBtn = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.rightBtn = new System.Windows.Forms.Button();
+            this.leftBtn = new System.Windows.Forms.Button();
             this.displayLabel = new System.Windows.Forms.Label();
             this.saveTxtBtn = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -113,8 +115,6 @@
             this.fileLoadBox = new System.Windows.Forms.TextBox();
             this.fileSaveBox = new System.Windows.Forms.TextBox();
             this.loadDataBtn = new System.Windows.Forms.Button();
-            this.leftBtn = new System.Windows.Forms.Button();
-            this.rightBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -647,6 +647,28 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Book service";
             // 
+            // rightBtn
+            // 
+            this.rightBtn.Enabled = false;
+            this.rightBtn.Location = new System.Drawing.Point(177, 298);
+            this.rightBtn.Name = "rightBtn";
+            this.rightBtn.Size = new System.Drawing.Size(20, 20);
+            this.rightBtn.TabIndex = 3;
+            this.rightBtn.Text = ">";
+            this.rightBtn.UseVisualStyleBackColor = true;
+            this.rightBtn.Click += new System.EventHandler(this.RightBtn_Click);
+            // 
+            // leftBtn
+            // 
+            this.leftBtn.Enabled = false;
+            this.leftBtn.Location = new System.Drawing.Point(6, 297);
+            this.leftBtn.Name = "leftBtn";
+            this.leftBtn.Size = new System.Drawing.Size(20, 20);
+            this.leftBtn.TabIndex = 2;
+            this.leftBtn.Text = "<";
+            this.leftBtn.UseVisualStyleBackColor = true;
+            this.leftBtn.Click += new System.EventHandler(this.LeftBtn_Click);
+            // 
             // displayLabel
             // 
             this.displayLabel.Location = new System.Drawing.Point(0, 320);
@@ -1082,28 +1104,6 @@
             this.loadDataBtn.UseVisualStyleBackColor = true;
             this.loadDataBtn.Click += new System.EventHandler(this.LoadCsvBtn_Click);
             // 
-            // leftBtn
-            // 
-            this.leftBtn.Enabled = false;
-            this.leftBtn.Location = new System.Drawing.Point(6, 297);
-            this.leftBtn.Name = "leftBtn";
-            this.leftBtn.Size = new System.Drawing.Size(20, 20);
-            this.leftBtn.TabIndex = 2;
-            this.leftBtn.Text = "<";
-            this.leftBtn.UseVisualStyleBackColor = true;
-            this.leftBtn.Click += new System.EventHandler(this.LeftBtn_Click);
-            // 
-            // rightBtn
-            // 
-            this.rightBtn.Enabled = false;
-            this.rightBtn.Location = new System.Drawing.Point(177, 298);
-            this.rightBtn.Name = "rightBtn";
-            this.rightBtn.Size = new System.Drawing.Size(20, 20);
-            this.rightBtn.TabIndex = 3;
-            this.rightBtn.Text = ">";
-            this.rightBtn.UseVisualStyleBackColor = true;
-            this.rightBtn.Click += new System.EventHandler(this.RightBtn_Click);
-            // 
             // BookForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1113,6 +1113,8 @@
             this.Controls.Add(this.infoTextBox);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox5);
+            this.MaximumSize = new System.Drawing.Size(607, 382);
+            this.MinimumSize = new System.Drawing.Size(607, 382);
             this.Name = "BookForm";
             this.Text = "BookForm";
             this.groupBox1.ResumeLayout(false);

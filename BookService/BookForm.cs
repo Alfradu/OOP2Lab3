@@ -29,7 +29,7 @@ namespace BookService
         {
             listBox.Items.Clear();
             books.Skip(page * showPerPage).Take(showPerPage).ToList().ForEach(b => listBox.Items.Add(b.Title));
-            displayLabel.Text = "(Displaying items " + ((page) * showPerPage + 1) + " to " + books.Take(showPerPage * (page + 1)).ToList().Count + ".)";
+            displayLabel.Text = "(Displaying items " + ((page) * showPerPage + 1) + " to " + books.Take(showPerPage * (page + 1)).ToList().Count + " out of " + books.ToList().Count + ".)";
             lookingAtBooks = true;
             CheckBtnEnabledStatus();
         }
@@ -37,7 +37,7 @@ namespace BookService
         {
             listBox.Items.Clear();
             authors.Skip(page * showPerPage).Take(showPerPage).ToList().ForEach(a => listBox.Items.Add(a.Name));
-            displayLabel.Text = "(Displaying items " + ((page) * showPerPage + 1) + " to " + authors.Take(showPerPage * (page + 1)).ToList().Count + ".)";
+            displayLabel.Text = "(Displaying items " + ((page) * showPerPage + 1) + " to " + authors.Take(showPerPage * (page + 1)).ToList().Count + " out of " + authors.ToList().Count + ".)";
             lookingAtBooks = false;
             CheckBtnEnabledStatus();
         }

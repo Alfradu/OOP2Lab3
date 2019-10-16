@@ -7,7 +7,7 @@ namespace BookService
 {
     class WriteToFile<T>
     {
-        static string path = AppDomain.CurrentDomain.BaseDirectory + @"\" + "../../files/";
+        static readonly string path = AppDomain.CurrentDomain.BaseDirectory + @"\" + "../../files/";
         public static void WriteToTextFile(IEnumerable<T> list, string extension, string fileName)
         {
             List<string> s = new List<string>();
@@ -17,7 +17,6 @@ namespace BookService
                 foreach(Book book in bookList)
                 {
                     s.Add(book.ISBN+";"+string.Join(", ",book.Authors.Select(a => a.Name)) + ";"+book.YearOfPublication + ";"+book.Title + ";"+book.Rating + ";"+book.NumberOfUserVotes);
-                    // TODO: add to TOSTRING() method.
                 }
             }
             else if (list.GetType() == typeof(List<Author>))
